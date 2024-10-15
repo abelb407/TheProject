@@ -4,9 +4,6 @@ namespace TheProject.Model
 {
     public class User : IdentityUser
     {
-
-        public int Id { get; set; }
-
         public string Name { get; set; }    
 
         public int Points { get; set; }

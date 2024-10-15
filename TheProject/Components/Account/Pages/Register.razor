@@ -28,6 +28,13 @@
                     <label for="email" class="form-label">Email</label>
                     <InputText class="form-control" placeholder="Email" @bind-Value="Model.Email" />
                 </div>
+
+             @*   <div class="col-md-6"> *@
+                   @*  <label for="password" class="form-label">Password</label>
+                    <InputText type="password" class="form-control" placeholder="Password" @bind-Value="Model.Password" />
+                </div> *@
+
+
                 <div class="col-md-6">
                     <label for="password" class="form-label">Password</label>
                     <InputText type="password" class="form-control" placeholder="Password" @bind-Value="Model.Password" />
@@ -36,6 +43,20 @@
                     <label for="name" class="form-label">Confirm Password</label>
                     <InputText type="password" class="form-control" placeholder="Confirm Password" @bind-Value="Model.ConfirmPassword" />
                 </div>
+
+                 <div class="col-md-6">
+                    <label for="password" class="form-label">School</label>
+                    <InputText type="password" class="form-control" placeholder="Password" @bind-Value="Model.School" />
+                </div>
+
+                <div class="col-md-6">
+                    <label for="password" class="form-label">Gender</label>
+                    <InputText type="password" class="form-control" placeholder="Password" @bind-Value="Model.Gender" />
+                </div>
+
+            
+
+
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-primary w-100">Register</button>
                 </div>
@@ -58,7 +79,13 @@
 
     public async Task RegisterUser(EditContext editContext)
     {
-        var user = Activator.CreateInstance<User>(); ;
+        var user = new User
+            {
+                Name = Model.Email,
+                School = Model.School,
+                Gender = Model.Gender
+
+            };
         await UserStore.SetUserNameAsync(user, Model.Email, CancellationToken.None);
         var emailStore = (IUserEmailStore<User>)UserStore;
         await emailStore.SetEmailAsync(user, Model.Email, CancellationToken.None);
@@ -81,10 +108,20 @@
 
     private sealed class RegisterModel
     {
+
+        [Required(ErrorMessage = "Please enter your email.")]
         public string Email { get; set; } = "";
 
+        [Required(ErrorMessage = "Please enter your email.")]
         public string Password { get; set; } = "";
 
+        [Required(ErrorMessage = "Please enter your email.")]
         public string ConfirmPassword { get; set; } = "";
+
+        [Required(ErrorMessage = "Please enter your email.")]
+        public string School { get; set; } = "";
+
+        [Required(ErrorMessage = "Please enter your email.")]
+        public string Gender { get; set; } = "";
     }
 }

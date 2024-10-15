@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TheProject.Model;
 
@@ -14,7 +15,7 @@ namespace TheProject.Components.Account
 
             accountGroup.MapGet("/Logout", async (
                ClaimsPrincipal user,
-               SignInManager<User> signInManager,
+               [FromBody] SignInManager<User> signInManager,
                string? returnUrl) =>
             {
                 await signInManager.SignOutAsync();

@@ -50,4 +50,6 @@ app.MapRazorComponents<App>()
 
 app.MapAdditionalAccountRoutes();
 
+
+
 app.Run();
