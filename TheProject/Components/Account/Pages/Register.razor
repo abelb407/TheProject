@@ -29,9 +29,9 @@
                     <InputText class="form-control" placeholder="Email" @bind-Value="Model.Email" />
                 </div>
 
-             @*   <div class="col-md-6"> *@
-                   @*  <label for="password" class="form-label">Password</label>
-                    <InputText type="password" class="form-control" placeholder="Password" @bind-Value="Model.Password" />
+                @*   <div class="col-md-6"> *@
+                @*  <label for="password" class="form-label">Password</label>
+                <InputText type="password" class="form-control" placeholder="Password" @bind-Value="Model.Password" />
                 </div> *@
 
 
@@ -44,17 +44,17 @@
                     <InputText type="password" class="form-control" placeholder="Confirm Password" @bind-Value="Model.ConfirmPassword" />
                 </div>
 
-                 <div class="col-md-6">
-                    <label for="password" class="form-label">School</label>
-                    <InputText type="password" class="form-control" placeholder="Password" @bind-Value="Model.School" />
+                <div class="col-md-6">
+                    <label for="school" class="form-label">School</label>
+                    <InputText type="text" class="form-control" placeholder="School" @bind-Value="Model.School" />
                 </div>
 
                 <div class="col-md-6">
-                    <label for="password" class="form-label">Gender</label>
-                    <InputText type="password" class="form-control" placeholder="Password" @bind-Value="Model.Gender" />
+                    <label for="gender" class="form-label">Gender</label>
+                    <InputText type="text" class="form-control" placeholder="Gender" @bind-Value="Model.Gender" />
                 </div>
 
-            
+
 
 
                 <div class="col-md-2">
@@ -82,13 +82,9 @@
         var user = new User
             {
                 Name = Model.Email,
-                School = Model.School,
-                Gender = Model.Gender
 
             };
-        await UserStore.SetUserNameAsync(user, Model.Email, CancellationToken.None);
-        var emailStore = (IUserEmailStore<User>)UserStore;
-        await emailStore.SetEmailAsync(user, Model.Email, CancellationToken.None);
+
         var result = await UserManager.CreateAsync(user, Model.Password);
 
         if (!result.Succeeded)
@@ -109,19 +105,16 @@
     private sealed class RegisterModel
     {
 
-        [Required(ErrorMessage = "Please enter your email.")]
         public string Email { get; set; } = "";
 
-        [Required(ErrorMessage = "Please enter your email.")]
         public string Password { get; set; } = "";
 
-        [Required(ErrorMessage = "Please enter your email.")]
+
         public string ConfirmPassword { get; set; } = "";
 
-        [Required(ErrorMessage = "Please enter your email.")]
         public string School { get; set; } = "";
 
-        [Required(ErrorMessage = "Please enter your email.")]
+
         public string Gender { get; set; } = "";
     }
 }

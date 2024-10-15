@@ -28,12 +28,12 @@ namespace TheProject.Context
                 await _roleManager.CreateAsync(new IdentityRole("Teacher"));
                 await _roleManager.CreateAsync(new IdentityRole("Student"));
 
-                var modName = "abel";
+                var moderatorName = "abel";
                 var modPassword = "Tantalum123";
 
                 var moderator = new User
                 {
-                    Name = modName,
+                    Name = moderatorName,
                     Points = 0, 
                     totalQuestions = 0, 
                     School = "SouthfieldsAcademy",

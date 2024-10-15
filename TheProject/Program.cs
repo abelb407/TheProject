@@ -27,8 +27,10 @@ builder.Services.AddDbContext<DatabaseContext>();
 
 builder.Services.AddIdentityCore<User>()
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<DatabaseContext>();
+    .AddEntityFrameworkStores<DatabaseContext>()
+    .AddSignInManager();
 
+builder.Services.AddLocalization();
 
 var app = builder.Build();
 
