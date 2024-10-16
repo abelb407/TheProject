@@ -29,10 +29,10 @@
                     <InputText class="form-control" placeholder="Email" @bind-Value="Model.Email" />
                 </div>
 
-                @*   <div class="col-md-6"> *@
-                @*  <label for="password" class="form-label">Password</label>
-                <InputText type="password" class="form-control" placeholder="Password" @bind-Value="Model.Password" />
-                </div> *@
+                <div class="col-md-6">
+                    <label for="username" class="form-label">Username</label>
+                    <InputText type="text" class="form-control" placeholder="Username" @bind-Value="Model.Username" />
+                </div>
 
 
                 <div class="col-md-6">
@@ -81,7 +81,10 @@
     {
         var user = new User
             {
+                Username = Model.Username,
                 Name = Model.Email,
+                School = Model.School,
+                Gender = Model.Gender,
 
             };
 
@@ -104,6 +107,8 @@
 
     private sealed class RegisterModel
     {
+
+        public string Username { get; set; } = "" ;
 
         public string Email { get; set; } = "";
 
