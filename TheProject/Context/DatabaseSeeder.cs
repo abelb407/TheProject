@@ -24,24 +24,25 @@ namespace TheProject.Context
 
             if (!_context.Users.Any()) 
             {
-                await _roleManager.CreateAsync(new IdentityRole("Moderator"));
-                await _roleManager.CreateAsync(new IdentityRole("Teacher"));
-                await _roleManager.CreateAsync(new IdentityRole("Student"));
+                await _roleManager.CreateAsync(new IdentityRole("Admin"));
 
-                var moderatorName = "abel";
-                var modPassword = "Tantalum123";
+                await _roleManager.CreateAsync(new IdentityRole("User"));
 
-                var moderator = new User
+                var adminEmail = "abel@gmail.com";
+                var adminPassword = "Website123!";
+
+                var admin = new User
                 {
-                    Name = moderatorName,
+                    Email = adminEmail,
                     Points = 0, 
                     totalQuestions = 0, 
                     School = "SouthfieldsAcademy",
                     Gender = "Male", 
                 };
 
-                await _userManager.CreateAsync(moderator, modPassword);
-                await _userManager.AddToRoleAsync(moderator, "Moderator");
+         
+                await _userManager.CreateAsync(admin, adminPassword);
+                await _userManager.AddToRoleAsync(admin, "Admin");
 
             }
         }

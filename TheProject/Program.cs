@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using TheProject.Components.Account;
 using TheProject.Context;
 using TheProject.Model;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,11 +25,8 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddDbContext<DatabaseContext>();
 
 builder.Services.AddIdentityCore<User>()
-    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<DatabaseContext>()
     .AddSignInManager();
-
-builder.Services.AddLocalization();
 
 var app = builder.Build();
 
@@ -51,7 +47,5 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
 app.MapAdditionalAccountRoutes();
-
-
 
 app.Run();

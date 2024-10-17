@@ -14,7 +14,6 @@
 @inject ILogger<Register> Logger
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
-
 <PageTitle>Register</PageTitle>
 <StatusMessage Message="@statusMessage" IsError="@isError" />
 
@@ -30,12 +29,6 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="username" class="form-label">Username</label>
-                    <InputText type="text" class="form-control" placeholder="Username" @bind-Value="Model.Username" />
-                </div>
-
-
-                <div class="col-md-6">
                     <label for="password" class="form-label">Password</label>
                     <InputText type="password" class="form-control" placeholder="Password" @bind-Value="Model.Password" />
                 </div>
@@ -43,19 +36,6 @@
                     <label for="name" class="form-label">Confirm Password</label>
                     <InputText type="password" class="form-control" placeholder="Confirm Password" @bind-Value="Model.ConfirmPassword" />
                 </div>
-
-                <div class="col-md-6">
-                    <label for="school" class="form-label">School</label>
-                    <InputText type="text" class="form-control" placeholder="School" @bind-Value="Model.School" />
-                </div>
-
-                <div class="col-md-6">
-                    <label for="gender" class="form-label">Gender</label>
-                    <InputText type="text" class="form-control" placeholder="Gender" @bind-Value="Model.Gender" />
-                </div>
-
-
-
 
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-primary w-100">Register</button>
@@ -81,11 +61,10 @@
     {
         var user = new User
             {
-                Username = Model.Username,
-                Name = Model.Email,
-                School = Model.School,
-                Gender = Model.Gender,
-
+            
+                UserName = Model.Email,
+                Email = Model.Email 
+                
             };
 
         var result = await UserManager.CreateAsync(user, Model.Password);
@@ -108,18 +87,13 @@
     private sealed class RegisterModel
     {
 
-        public string Username { get; set; } = "" ;
 
         public string Email { get; set; } = "";
 
         public string Password { get; set; } = "";
 
-
         public string ConfirmPassword { get; set; } = "";
 
-        public string School { get; set; } = "";
 
-
-        public string Gender { get; set; } = "";
     }
 }
