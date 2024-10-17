@@ -18,13 +18,13 @@
 <StatusMessage Message="@statusMessage" IsError="@isError" />
 
 <div class="card">
-    <div class="card-body bg-light">
+    <div class="card-body bg-warning">
         <h4 class="card-title">Register</h4>
 
         <EditForm OnValidSubmit="RegisterUser" Model="Model" FormName="registerForm">
             <div class="row g-3">
                 <div class="col-md-12">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label" w3-round >Email</label>
                     <InputText class="form-control" placeholder="Email" @bind-Value="Model.Email" />
                 </div>
 
