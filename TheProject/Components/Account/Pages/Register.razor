@@ -17,6 +17,8 @@
 <PageTitle>Register</PageTitle>
 <StatusMessage Message="@statusMessage" IsError="@isError" />
 
+
+ @* Registering form *@
 <div class="card">
     <div class="card-body bg-warning">
         <h4 class="card-title">Register</h4>
@@ -61,10 +63,10 @@
     {
         var user = new User
             {
-            
+                // Create a new user using values from the RegisterModel
                 UserName = Model.Email,
-                Email = Model.Email 
-                
+                Email = Model.Email, 
+               
             };
 
         var result = await UserManager.CreateAsync(user, Model.Password);
@@ -87,7 +89,7 @@
     private sealed class RegisterModel
     {
 
-   
+       // Model containing the values that need to be input to sign up  
 
         public string Email { get; set; } = "";
 
