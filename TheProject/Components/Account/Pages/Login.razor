@@ -19,11 +19,9 @@
         <h4 class="card-title">Login</h4>
         <EditForm OnValidSubmit="LoginUser" Model="Model" FormName="loginForm">
             <div class="row g-3">
-
-
                 <div class="col-md-6">
                     <label for="email" class="form-label">Email</label>
-                    <InputText @bind-Value="Model.Email" class="form-control" placeholder="name@example.com" />
+                    <InputText @bind-Value="Model.Email" class="form-control" placeholder="Email" />
                 </div>
                 <div class="col-md-6">
                     <label for="password" class="form-label">Password</label>
@@ -66,7 +64,7 @@
     public async Task LoginUser()
     {
         // This doesn't count login failures towards account lockout
-        // // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+        // To enable password failures to trigger account lockout, set lockoutOnFailure: true
         var result = await SignInManager.PasswordSignInAsync(Model.Email, Model.Password, false, lockoutOnFailure: false);
         if (result.Succeeded)
         {
@@ -82,10 +80,8 @@
 
     private sealed class LoginModel
     {
-    
-       public string Email { get; set; } = "";
+        public string Email { get; set; } = "";
 
-   
-       public string Password { get; set; } = "";
+        public string Password { get; set; } = "";
     }
 }
