@@ -1,0 +1,29 @@
+﻿* { 
+    margin: 0px; 
+    padding: 0px; 
+    font-family: 'Comic Sans MS'
+    box-sizing: border-box; 
+
+}
+
+
+.app-title {
+    margin: 30px auto;
+    padding: 30px;
+    font-size: 40pt;
+    width: 100%;
+    text-align: center;
+}
+
+.quiz {
+    margin: 10px auto;
+    width: 50%;
+    background-color: ghostwhite;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: -20px 20px 30px rgba(0,0,0,0.3);
+}
+
+.quiz-body {
+    padding-top: 15px;
+}

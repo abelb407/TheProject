@@ -68,6 +68,8 @@ namespace TheProject.Model
 
                 Answer = "D"
             };
+
+            Questions.AddRange(new List<Questions> { q1, q2, q3, q4 } );
         }
     }
 }
