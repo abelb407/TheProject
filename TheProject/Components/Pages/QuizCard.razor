@@ -1,4 +1,38 @@
-﻿<h3>QuizCard</h3>
+﻿@page "/quiz"
+@using TheProject.Model
+@inherits QuizCardBase
+
+
+<h3>Quiz:</h3>
+
+        <div class="container">
+            <div class="quiz">
+                <div class="app-title">
+                 QUIZ 
+                </div>
+                <div class="quiz-header">
+                 @Questions[0].Question
+                </div>
+                <div class="quiz-body">
+                    @foreach (var option in Questions[0].Options)
+                        {       
+                            <div>
+                               @option    
+                            </div>
+                       }
+        </div>
+            </div>
+>        </div>
+       
+
+
+        
+
 @code {
+
+
+    public string Question { get; set; }
+
+
 
 }

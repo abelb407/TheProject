@@ -5,15 +5,13 @@
 
         public int Id { get; set; }
 
-        public Topic Topic { get; set; }
+        public string Question { get; set; } = string.Empty;  
 
-        public string Answer1 { get; set; } 
+        public string Topic { get; set; } = string.Empty;
 
-        public string Answer2 { get; set; }
+        public IEnumerable<string> Options { get; set; } = new List<String>();
 
-        public string? Answer3 { get; set; } 
-
-        public string? Answer4 { get; set; }       
+        public string Answer {  get; set; } = string.Empty;
 
     }
 }
