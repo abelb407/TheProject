@@ -5,6 +5,8 @@ namespace TheProject.Model
     public class QuizCardBase : ComponentBase
     {
         public List<Questions> Questions { get; set; } = new List<Questions>();
+        protected int questionIndex = 0; 
+        protected int score = 0; 
 
         protected override Task OnInitializedAsync()
         {
@@ -14,16 +16,30 @@ namespace TheProject.Model
             return base.OnInitializedAsync();
         }
 
+        protected void OptionSelected(string option)
+        {
+            if (option == Questions[questionIndex].Answer ) 
+            {
+                score ++; 
+            }
+
+            questionIndex++; 
+
+        }
+
+
+
+
         private void LoadQuestions()
         {
             Questions q1 = new Questions
             {
 
-                Question = "eggs", 
+                Question = "Hi", 
 
                 Topic = "Organic",
 
-                Options = new List<string>() { "A", "B", "C", "D" },
+                Option = new List<string>() { "A", "B", "C", "D" },
                 
                 Answer = "A"
             };
@@ -32,11 +48,11 @@ namespace TheProject.Model
             Questions q2 = new Questions
             {
 
-                Question = "eggs",
+                Question = "Hey",
 
                 Topic = "Organic",
 
-                Options = new List<string>() { "A", "B", "C", "D" },
+                Option = new List<string>() { "A", "B", "C", "D" },
 
                 Answer = "B"
             };
@@ -45,12 +61,12 @@ namespace TheProject.Model
             Questions q3 = new Questions
             {
 
-                Question = "eggs",
+                Question = "Yo",
 
 
                 Topic = "Organic",
 
-                Options = new List<string>() { "A", "B", "C", "D" },
+                Option = new List<string>() { "A", "B", "C", "D" },
 
                 Answer = "C"
             };
@@ -59,12 +75,12 @@ namespace TheProject.Model
             Questions q4 = new Questions
             {
 
-                Question = "eggs",
+                Question = "Hiya",
 
 
                 Topic = "Organic",
 
-                Options = new List<string>() { "A", "B", "C", "D" },
+                Option = new List<string>() { "A", "B", "C", "D" },
 
                 Answer = "D"
             };

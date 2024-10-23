@@ -9,7 +9,7 @@
 
         public string Topic { get; set; } = string.Empty;
 
-        public IEnumerable<string> Options { get; set; } = new List<String>();
+        public IEnumerable<string> Option { get; set; } = new List<String>();
 
         public string Answer {  get; set; } = string.Empty;
 

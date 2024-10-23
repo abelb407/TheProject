@@ -1,28 +1,29 @@
 ﻿@page "/quiz"
 @using TheProject.Model
+@using TheProject.Components
 @inherits QuizCardBase
 
 
 <h3>Quiz:</h3>
 
-        <div class="container">
-            <div class="quiz">
-                <div class="app-title">
-                 QUIZ 
-                </div>
-                <div class="quiz-header">
-                 @Questions[0].Question
-                </div>
-                <div class="quiz-body">
-                    @foreach (var option in Questions[0].Options)
-                        {       
-                            <div>
-                               @option    
-                            </div>
-                       }
-        </div>
+ <div class="container"
+     <div class="quiz">
+         <div class="app-title">
+         QUIZ
+         </div>
+         <div class="quiz-header">
+            @Questions[questionIndex].Question
+         </div>
+         <div class="quiz-body">
+         @foreach (var option in Questions[questionIndex].Option)
+           {       
+            <div>
+             <OptionCard Option="@option" OnOptionSelected="OptionSelected"></OptionCard>    
             </div>
->        </div>
+          }
+        </div>
+      </div>
+    </div>
        
 
 
