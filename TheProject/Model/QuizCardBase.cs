@@ -5,8 +5,8 @@ namespace TheProject.Model
     public class QuizCardBase : ComponentBase
     {
         public List<Questions> Questions { get; set; } = new List<Questions>();
-        protected int questionIndex = 0; 
-        protected int score = 0; 
+        public int questionIndex = 0; 
+        public int score = 0; 
 
         protected override Task OnInitializedAsync()
         {
@@ -20,7 +20,7 @@ namespace TheProject.Model
         {
             if (option == Questions[questionIndex].Answer ) 
             {
-                score ++; 
+                score++; 
             }
 
             questionIndex++; 
@@ -35,54 +35,54 @@ namespace TheProject.Model
             Questions q1 = new Questions
             {
 
-                Question = "Hi", 
+                Question = "What is alcohol?", 
 
                 Topic = "Organic",
 
-                Option = new List<string>() { "A", "B", "C", "D" },
+                Option = new List<string>() { "Hydroxy", "Carbonyl", "Nitrile", "Phosphate" },
                 
-                Answer = "A"
+                Answer = "Hydroxy"
             };
 
 
             Questions q2 = new Questions
             {
 
-                Question = "Hey",
+                Question = "Which one is organic?",
 
                 Topic = "Organic",
 
-                Option = new List<string>() { "A", "B", "C", "D" },
+                Option = new List<string>() { "Tin", "Carbon", "Lead", "Platinum" },
 
-                Answer = "B"
+                Answer = "Carbon"
             };
 
 
             Questions q3 = new Questions
             {
 
-                Question = "Yo",
+                Question = "Who's the electrophile?",
 
 
                 Topic = "Organic",
 
-                Option = new List<string>() { "A", "B", "C", "D" },
+                Option = new List<string>() { "Ammonia", "Hydroxide Ion", "Hydronium Ion", "Cyanide Ion" },
 
-                Answer = "C"
+                Answer = "Hydronium Ion"
             };
 
 
             Questions q4 = new Questions
             {
 
-                Question = "Hiya",
+                Question = "Which one smells like rotten eggs?",
 
 
                 Topic = "Organic",
 
-                Option = new List<string>() { "A", "B", "C", "D" },
+                Option = new List<string>() { "Chlorine", "Dog", "Propanone", "Hydrogen Sulfide" },
 
-                Answer = "D"
+                Answer = "Hydrogen Sulfide"
             };
 
             Questions.AddRange(new List<Questions> { q1, q2, q3, q4 } );

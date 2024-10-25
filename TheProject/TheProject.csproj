@@ -15,4 +15,14 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\database\fotos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\database\fotos\bad.png" />
+    <None Include="wwwroot\database\fotos\good.png" />
+    <None Include="wwwroot\database\fotos\middling.png" />
+  </ItemGroup>
+
 </Project>

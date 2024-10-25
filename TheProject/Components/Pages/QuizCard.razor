@@ -8,20 +8,45 @@
 
  <div class="container"
      <div class="quiz">
-         <div class="app-title">
-         QUIZ
-         </div>
-         <div class="quiz-header">
-            @Questions[questionIndex].Question
-         </div>
-         <div class="quiz-body">
-         @foreach (var option in Questions[questionIndex].Option)
-           {       
-            <div>
-             <OptionCard Option="@option" OnOptionSelected="OptionSelected"></OptionCard>    
+
+       @if (questionIndex < Questions.Count() ) 
+        {
+
+             <div class="app-title">
+             QUIZ
+             </div>
+             <div class="quiz-header">
+                @Questions[questionIndex].Question
+             </div>
+             <div class="quiz-body">
+                @foreach (var option in Questions[questionIndex].Option)
+                {
+                    <div>
+                     <OptionCard Option="@option" OnOptionSelected="OptionSelected"></OptionCard>
+                    </div>
+                }
             </div>
-          }
-        </div>
+
+        }
+       else
+        {
+           <div class="app-title">
+               RESULTS
+           </div>
+           <div class="quiz-header">
+             @(score > (Questions.Count()/2) ? "Nice work" : "Bad work")
+            </div>
+           <div class="quiz-body">
+            <h1> Your score is: @score </h1>
+           </div>
+           <div class="quiz-floor"> 
+
+               <button class="warning" onclick="" > Restart! </button>
+
+           </div>
+        }
+
+
       </div>
     </div>
        
@@ -33,6 +58,7 @@
 
 
     public string Question { get; set; }
+
 
 
 
