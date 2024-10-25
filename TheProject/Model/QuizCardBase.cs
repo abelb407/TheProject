@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System.Security.AccessControl;
 
 namespace TheProject.Model
 {
     public class QuizCardBase : ComponentBase
     {
+       
         public List<Questions> Questions { get; set; } = new List<Questions>();
         public int questionIndex = 0; 
         public int score = 0; 
+      
 
         protected override Task OnInitializedAsync()
         {
@@ -20,6 +23,7 @@ namespace TheProject.Model
         {
             if (option == Questions[questionIndex].Answer ) 
             {
+                //When an option is selected: increment score by 1 if answer is correct, then increment the index to load the next question
                 score++; 
             }
 
@@ -32,6 +36,7 @@ namespace TheProject.Model
 
         private void LoadQuestions()
         {
+            // Questions which are displayed in the quiz. 
             Questions q1 = new Questions
             {
 
@@ -85,6 +90,7 @@ namespace TheProject.Model
                 Answer = "Hydrogen Sulfide"
             };
 
+            // Code assigning numerical order to the questions, so incrementing moves between them 
             Questions.AddRange(new List<Questions> { q1, q2, q3, q4 } );
         }
     }
