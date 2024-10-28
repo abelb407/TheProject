@@ -38,15 +38,15 @@
            </div>
            <div class="quiz-header">
             @*  Logic to decide if the student got above half (good) or below half (not good) *@
-             @(score > (Questions.Count()/2) ? "Nice work" : "Better luck next time")
+             @(score > (Questions.Count()/2) ? "Nice work!!" : "Try again!")
             </div>
            <div class="quiz-body">
             <h1> Your score is: @score </h1>
            </div>
            <div class="quiz-floor"> 
 
-               <button class="warning" onclick="" > Restart! </button>
-
+               <button class="btn btn-warning" onclick="@RestartQuiz" > Restart! </button>
+               <a href="/" class="btn btn-primary">To Home</a>
            </div>
         }
 

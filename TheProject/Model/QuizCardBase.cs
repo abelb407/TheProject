@@ -8,9 +8,13 @@ namespace TheProject.Model
        
         public List<Questions> Questions { get; set; } = new List<Questions>();
         public int questionIndex = 0; 
-        public int score = 0; 
-      
+        public int score = 0;
 
+        protected void RestartQuiz()
+        {
+            score = 0;
+            questionIndex = 0;
+        }
         protected override Task OnInitializedAsync()
         {
 
