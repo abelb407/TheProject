@@ -44,7 +44,7 @@ namespace TheProject.Model
             Questions q1 = new Questions
             {
 
-                Question = "What is alcohol?", 
+                Question = "Which group is always found in an alcohol?", 
 
                 Topic = "Organic",
 

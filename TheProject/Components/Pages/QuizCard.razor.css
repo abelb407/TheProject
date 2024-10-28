@@ -1,15 +1,13 @@
-﻿* { 
-    margin: 0px; 
-    padding: 0px; 
-    font-family: 'Comic Sans MS'
-    box-sizing: border-box; 
-
+﻿﻿* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
 }
-
 
 .app-title {
     margin: 30px auto;
-    padding: 30px;
+    padding: 10px;
     font-size: 40pt;
     width: 100%;
     text-align: center;
@@ -18,12 +16,58 @@
 .quiz {
     margin: 10px auto;
     width: 50%;
-    background-color: ghostwhite;
+    background-color: #f5f6f6;
     border-radius: 10px;
     padding: 15px;
     box-shadow: -20px 20px 30px rgba(0,0,0,0.3);
 }
 
+.quiz-header {
+    text-align: center;
+}
+
 .quiz-body {
     padding-top: 15px;
 }
+
+.quiz-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.next-btn {
+    width: 200px;
+    padding: 5px;
+    background-color: black;
+    color: #fff;
+    font-size: 14pt;
+    border-radius: 3px;
+    border: none;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+
+.restart-btn {
+    width: 200px;
+    padding: 5px;
+    background-color: darkslategrey;
+    color: #fff;
+    font-size: 14pt;
+    border-radius: 3px;
+    border: none;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.next-btn:hover {
+    box-shadow: -1.5px 1.5px 10px rgba(0,0,0,0.3);
+}
+
+
+
+.restart-btn:hover {
+    box-shadow: -1.5px 1.5px 10px rgba(0,0,0,0.3);
+}
+
+
