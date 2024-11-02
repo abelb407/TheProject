@@ -46,7 +46,7 @@ namespace TheProject.Model
 
                 Question = "Which group is always found in an alcohol?", 
 
-                Topic = "Organic",
+                Topic = "Alcohol",
 
                 Option = new List<string>() { "Hydroxy", "Carbonyl", "Nitrile", "Phosphate" },
                 
@@ -59,7 +59,7 @@ namespace TheProject.Model
 
                 Question = "Which one is organic?",
 
-                Topic = "Organic",
+                Topic = "General",
 
                 Option = new List<string>() { "Tin", "Carbon", "Lead", "Platinum" },
 
@@ -73,7 +73,7 @@ namespace TheProject.Model
                 Question = "Who's the electrophile?",
 
 
-                Topic = "Organic",
+                Topic = "General",
 
                 Option = new List<string>() { "Ammonia", "Hydroxide Ion", "Hydronium Ion", "Cyanide Ion" },
 
@@ -87,7 +87,7 @@ namespace TheProject.Model
                 Question = "Which one smells like rotten eggs?",
 
 
-                Topic = "Organic",
+                Topic = "General",
 
                 Option = new List<string>() { "Chlorine", "Dog", "Propanone", "Hydrogen Sulfide" },
 

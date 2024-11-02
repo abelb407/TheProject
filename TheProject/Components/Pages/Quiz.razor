@@ -1,7 +1,57 @@
-﻿@page "/quizchoice"
+﻿@page "/quiz"
+
+@using TheProject.Model
 
 <h3>Quiz Selection!</h3>
 
-@code {
+<h5>Select a Topic</h5>
 
+@* Form for choosing the topic *@
+<EditForm Model="@userChoice" OnValidSubmit="HandleValidSubmit">
+    <div class="form-group">
+        <label for="topic">Choose Quiz Topic:</label>
+        <InputSelect id="topic" @bind-Value="userChoice.Topic">
+            <option value="">-- Select a topic --</option>
+            @foreach (var topic in Topics)
+            {
+                <option value="@topic">@topic</option>
+            }
+        </InputSelect>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+<p>@resultMessage</p>
+
+@code {
+    private string resultMessage;
+
+    // List of topics to display in dropdown
+    private List<string> Topics = new List<string>
+    {
+        "General", 
+        "Alcohols",
+        "Alkanes",
+        "Alkenes",
+        "Aldehydes & Ketones",
+        "Carboxylic Acids & Esters",
+        "Amines",
+        "Halogenoalkanes"
+    };
+
+    // Model to store the user selection
+    private UserChoiceModel userChoice = new UserChoiceModel();
+
+    // For when the form is submitted
+    private void HandleValidSubmit()
+    {
+        resultMessage = $"You selected: {userChoice.Topic}";
+    }
+
+    // Model class to hold the selection data
+    public class UserChoiceModel
+    {
+        public Topic Topic { get; set; }
+    }
 }
