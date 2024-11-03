@@ -1,25 +1,30 @@
 ﻿@page "/quiz"
 
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+
 @using TheProject.Model
+<h3>Select a Topic</h3>
 
-<h3>Quiz Selection!</h3>
-
-<h5>Select a Topic</h5>
-
-@* Form for choosing the topic *@
-<EditForm Model="@userChoice" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@userSelection" OnValidSubmit="HandleValidSubmit">
     <div class="form-group">
-        <label for="topic">Choose Quiz Topic:</label>
-        <InputSelect id="topic" @bind-Value="userChoice.Topic">
-            <option value="">-- Select a topic --</option>
+
+        <label for="topic">Choose a topic:</label>
+
+        <InputSelect id="topic" @bind-Value="userSelection.Topic">
+
+            <option value=""> Select Topic: </option>
             @foreach (var topic in Topics)
             {
+
                 <option value="@topic">@topic</option>
             }
+
         </InputSelect>
+
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+   <button type="submit" class="btn btn-primary">Submit</button>
 </EditForm>
 
 <p>@resultMessage</p>
@@ -30,27 +35,29 @@
     // List of topics to display in dropdown
     private List<string> Topics = new List<string>
     {
-        "General", 
-        "Alcohols",
         "Alkanes",
         "Alkenes",
-        "Aldehydes & Ketones",
-        "Carboxylic Acids & Esters",
-        "Amines",
+        "Alcohols",
+        "Aldehydes",
+        "Carboxylic Acids",
+        "Amines", 
         "Halogenoalkanes"
     };
 
-    // Model to store the user selection
-    private UserChoiceModel userChoice = new UserChoiceModel();
+    // Model to store the user's selected topic
+    private UserSelectionModel userSelection = new UserSelectionModel();
 
-    // For when the form is submitted
+    // Handle form submission
     private void HandleValidSubmit()
     {
-        resultMessage = $"You selected: {userChoice.Topic}";
+        Console.WriteLine("Submitted");
+        resultMessage = "Selected" ;
+        StateHasChanged();
+
     }
 
     // Model class to hold the selection data
-    public class UserChoiceModel
+    public class UserSelectionModel
     {
         public Topic Topic { get; set; }
     }
