@@ -35,7 +35,10 @@ namespace TheProject.Model
 
         }
 
-
+        protected void NextQuestion()
+        {
+            questionIndex++; 
+        }
 
 
         private void LoadQuestions()
@@ -46,7 +49,7 @@ namespace TheProject.Model
 
                 Question = "Which group is always found in an alcohol?", 
 
-                Topic = "Alcohol",
+                Topic = "Alcohols",
 
                 Option = new List<string>() { "Hydroxy", "Carbonyl", "Nitrile", "Phosphate" },
                 
@@ -59,7 +62,7 @@ namespace TheProject.Model
 
                 Question = "Which one is organic?",
 
-                Topic = "General",
+                Topic = "Alkanes",
 
                 Option = new List<string>() { "Tin", "Carbon", "Lead", "Platinum" },
 
@@ -73,7 +76,7 @@ namespace TheProject.Model
                 Question = "Who's the electrophile?",
 
 
-                Topic = "General",
+                Topic = "Alkenes",
 
                 Option = new List<string>() { "Ammonia", "Hydroxide Ion", "Hydronium Ion", "Cyanide Ion" },
 
@@ -87,7 +90,7 @@ namespace TheProject.Model
                 Question = "Which one smells like rotten eggs?",
 
 
-                Topic = "General",
+                Topic = "Alkanes",
 
                 Option = new List<string>() { "Chlorine", "Dog", "Propanone", "Hydrogen Sulfide" },
 

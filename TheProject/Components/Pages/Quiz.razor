@@ -2,37 +2,39 @@
 
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Components.Forms
+@inject TopicSelectionService TopicService
+@inject NavigationManager NavigationManager
 
 @using TheProject.Model
 <h3>Select a Topic</h3>
 
-<EditForm Model="@userSelection" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="userChoice" OnValidSubmit="HandleValidSubmit">
+
     <div class="form-group">
 
         <label for="topic">Choose a topic:</label>
 
-        <InputSelect id="topic" @bind-Value="userSelection.Topic">
+        <InputSelect id="topic" @bind-Value="userChoice.TopicChoice">
 
             <option value=""> Select Topic: </option>
+
             @foreach (var topic in Topics)
             {
-
                 <option value="@topic">@topic</option>
             }
 
         </InputSelect>
 
-    </div>
+        <ValidationMessage For="@(() => userChoice.TopicChoice)" />
 
-   <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </EditForm>
 
 <p>@resultMessage</p>
 
 @code {
-    private string resultMessage;
-
-    // List of topics to display in dropdown
+    private string resultMessage = "Topic: Currently Selecting...";
     private List<string> Topics = new List<string>
     {
         "Alkanes",
@@ -40,25 +42,34 @@
         "Alcohols",
         "Aldehydes",
         "Carboxylic Acids",
-        "Amines", 
+        "Amines",
         "Halogenoalkanes"
     };
 
-    // Model to store the user's selected topic
-    private UserSelectionModel userSelection = new UserSelectionModel();
-
-    // Handle form submission
-    private void HandleValidSubmit()
+    public class TopicSelectionService
     {
-        Console.WriteLine("Submitted");
-        resultMessage = "Selected" ;
-        StateHasChanged();
+        public string Topic { get; private set; }
 
+        public void SetTopic(string TopicChoice)
+        {
+            Topic = TopicChoice;
+        }
     }
 
-    // Model class to hold the selection data
-    public class UserSelectionModel
+
+
+    private UserChoiceModel userChoice = new UserChoiceModel();
+
+    private void HandleValidSubmit()
     {
-        public Topic Topic { get; set; }
+        TopicService.SetTopic(userChoice.TopicChoice);
+        resultMessage = "Selected: " + userChoice.TopicChoice;
+        NavigationManager.NavigateTo("/quizcard");
+    }
+
+    public class UserChoiceModel
+    {
+        [Required(ErrorMessage = "Please select a topic.")]
+        public string TopicChoice { get; set; }
     }
 }

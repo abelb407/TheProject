@@ -2,16 +2,14 @@
 {
     public class Questions
     {
+        public int Id { get; set; } 
+        public string Question { get; set; }
 
-        public int Id { get; set; }
+        public string Topic { get; set; }
 
-        public string Question { get; set; } = string.Empty;  
+        public List<string> Option { get; set; }
 
-        public string Topic { get; set; } = string.Empty;
-
-        public IEnumerable<string> Option { get; set; } = new List<String>();
-
-        public string Answer {  get; set; } = string.Empty;
+        public string Answer { get; set; }
 
     }
 }

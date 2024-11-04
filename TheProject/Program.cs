@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using TheProject.Components.Account;
 using TheProject.Context;
 using TheProject.Model;
+using static TheProject.Components.Pages.Quiz;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -27,6 +28,8 @@ builder.Services.AddDbContext<DatabaseContext>();
 builder.Services.AddIdentityCore<User>()
     .AddEntityFrameworkStores<DatabaseContext>()
     .AddSignInManager();
+
+builder.Services.AddSingleton<TopicSelectionService>();
 
 var app = builder.Build();
 

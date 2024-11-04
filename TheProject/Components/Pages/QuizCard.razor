@@ -1,72 +1,61 @@
 ﻿@page "/quizcard"
 @using TheProject.Model
 @using TheProject.Components
+@using static TheProject.Components.Pages.Quiz
 @inject NavigationManager NavigationManager
+@inject TopicSelectionService TopicService
 @inherits QuizCardBase
-
 
 <h3>Quiz:</h3>
 
- <div class="container"
-     <div class="quiz">
-@*         If questions are left, load the quiz interface *@
-       @if (questionIndex < Questions.Count() ) 
+<div class="container">
+    <div class="quiz">
+        @* Check if questions are available for the selected topic *@
+        @if (FilteredQuestions.Count() > 0)
         {
-
-             <div class="app-title">
-             QUIZ
-             </div>
-             <div class="quiz-header">
-                @Questions[questionIndex].Question
-             </div>
-             <div class="quiz-body">
-                @foreach (var option in Questions[questionIndex].Option)
-                {
-             @*        Code to display each option stored for the question *@
-                    <div>
-                     <OptionCard Option="@option" OnOptionSelected="OptionSelected"></OptionCard>
-                    </div>
-                }
-            </div>
-
+            @* Display the current question if there are questions left *@
+            if (questionIndex < FilteredQuestions.Count())
+            {
+                <div class="app-title">Quiz</div>
+                <div class="quiz-header">@FilteredQuestions[questionIndex].Question</div>
+                <div class="quiz-body">
+                    @foreach (var option in FilteredQuestions[questionIndex].Option)
+                    {
+                        <OptionCard Option="@option" OnOptionSelected="OptionSelected"></OptionCard>
+                    }
+                </div>
+            }
+            else
+            {
+                @* If there are no more questions, load the results interface *@
+                <div class="app-title">RESULTS!!!! WOOOO</div>
+                <div class="quiz-header">
+                    @(score > (FilteredQuestions.Count() / 2) ? "Nice work!!" : "Try again!")
+                </div>
+                <div class="quiz-body">
+                    <h1>Your score is: @score</h1>
+                    <img src="/database/fotos/bad.png" />
+                    <img src="/database/fotos/good.png" />
+                    <img src="/database/fotos/middling.png" />
+                </div>
+                <div class="quiz-floor">
+                    <button class="btn restart-btn" @onclick="RestartQuiz">Restart!</button>
+                    <a href="/" class="btn next-btn">To Home</a>
+                </div>
+            }
         }
-       @*  If there are no more questions, load the results interface *@
-       else
+        else
         {
-           <div class="app-title">
-               RESULTS
-           </div>
-           <div class="quiz-header">
-            @*  Logic to decide if the student got above half (good) or below half (not good) *@
-             @(score > (Questions.Count()/2) ? "Nice work!!" : "Try again!")
-            </div>
-           <div class="quiz-body">
-            <h1> Your score is: @score </h1>
-            <img src="/database/fotos/bad.png" />
-            <img src="/database/fotos/good.png" />
-            <img src="/database/fotos/middling.png" />
-           </div>
-           <div class="quiz-floor"> 
-
-               <button class="btn restart-btn" onclick="@RestartQuiz" > Restart! </button>
-               <a href="/" class="btn next-btn">To Home</a>
-           </div>
+            <div class="app-title">No questions available for the selected topic.</div>
         }
-
-
-      </div>
     </div>
-       
-
+</div>
 
         
 
 @code {
 
-
-    public string Question { get; set; }
-
-
-
-
+    private List<Questions> FilteredQuestions =>
+        Questions.Where(q => string.Equals(q.Topic, TopicService.Topic, StringComparison.OrdinalIgnoreCase)).ToList();
+  
 }
