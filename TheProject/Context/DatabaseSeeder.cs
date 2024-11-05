@@ -29,7 +29,7 @@ namespace TheProject.Context
                 await _roleManager.CreateAsync(new IdentityRole("User"));
 
                 var adminEmail = "abel@gmail.com";
-                var adminPassword = "Ethene123!";
+                var adminPassword = "Eth123!";
 
                 var admin = new User
                 {

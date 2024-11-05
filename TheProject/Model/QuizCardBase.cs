@@ -7,6 +7,8 @@ namespace TheProject.Model
     {
        
         public List<Questions> Questions { get; set; } = new List<Questions>();
+        public string Solution { get; private set; }
+
         public int questionIndex = 0; 
         public int score = 0;
 
@@ -47,13 +49,15 @@ namespace TheProject.Model
             Questions q1 = new Questions
             {
 
-                Question = "Which group is always found in an alcohol?", 
+                Question = "Which group is always found in an alcohol?",
 
                 Topic = "Alcohols",
 
                 Option = new List<string>() { "Hydroxy", "Carbonyl", "Nitrile", "Phosphate" },
-                
-                Answer = "Hydroxy"
+
+                Answer = "Hydroxy",
+
+               Solution = "Alcohols contain the hydroxyl group, OH."
             };
 
 
@@ -66,7 +70,9 @@ namespace TheProject.Model
 
                 Option = new List<string>() { "Tin", "Carbon", "Lead", "Platinum" },
 
-                Answer = "Carbon"
+                Answer = "Carbon",
+
+                Solution = "Organic chemistry is the study of carbon based compounds."
             };
 
 
@@ -80,7 +86,9 @@ namespace TheProject.Model
 
                 Option = new List<string>() { "Ammonia", "Hydroxide Ion", "Hydronium Ion", "Cyanide Ion" },
 
-                Answer = "Hydronium Ion"
+                Answer = "Hydronium Ion",
+
+                Solution = "Hydronium ions have an oxygen bonded to three hydrogens. It has a positive charge as the oxygen has one too many bonds."
             };
 
 
@@ -94,7 +102,9 @@ namespace TheProject.Model
 
                 Option = new List<string>() { "Chlorine", "Dog", "Propanone", "Hydrogen Sulfide" },
 
-                Answer = "Hydrogen Sulfide"
+                Answer = "Hydrogen Sulfide",
+
+               Solution = "Sulfur compounds tend to have a bad smell. Pure sulfur doesn't particularly smell however."
             };
 
             // Code assigning numerical order to the questions, so incrementing moves between them 

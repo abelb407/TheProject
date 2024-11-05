@@ -28,21 +28,19 @@
             else
             {
                 @* If there are no more questions, load the results interface *@
-                <div class="app-title">RESULTS!!!! WOOOO</div>
+                <div class="app-title">RESULTS</div>
                 <div class="quiz-header">
                     @(score > (FilteredQuestions.Count() / 2) ? "Nice work!!" : "Try again!")
                 </div>
                 <div class="quiz-body">
                     <h1>Your score is: @score</h1>
-                    <img src="/database/fotos/bad.png" />
-                    <img src="/database/fotos/good.png" />
-                    <img src="/database/fotos/middling.png" />
                 </div>
                 <div class="quiz-floor">
                     <button class="btn restart-btn" @onclick="RestartQuiz">Restart!</button>
                     <a href="/" class="btn next-btn">To Home</a>
                 </div>
             }
+
         }
         else
         {
