@@ -35,6 +35,8 @@
 
 @code {
     private string resultMessage = "Topic: Currently Selecting...";
+
+    // The topics which appear in the dropdown menu
     private List<string> Topics = new List<string>
     {
         "Alkanes",
@@ -46,6 +48,7 @@
         "Halogenoalkanes"
     };
 
+    // Serivce which allows the topic selected to be used elsewhere
     public class TopicSelectionService
     {
         public string? Topic { get; private set; }
@@ -59,7 +62,7 @@
 
 
     private UserChoiceModel userChoice = new UserChoiceModel();
-
+    // Process when a topic is chosen
     private void HandleValidSubmit()
     {
         TopicService.SetTopic(userChoice.TopicChoice);

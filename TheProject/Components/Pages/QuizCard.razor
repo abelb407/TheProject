@@ -2,16 +2,19 @@
 @using TheProject.Model
 @using TheProject.Components
 @using static TheProject.Components.Pages.Quiz
+@using TheProject.Context
+@using TheProject.Components.Account
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Components.Authorization
 @inject NavigationManager NavigationManager
 @inject TopicSelectionService TopicService
 @inherits QuizCardBase
 @inject UserManager<User> userManager
 @inject IHttpContextAccessor httpContextAccessor
-@using TheProject.Context
-@using TheProject.Components.Account
-@using Microsoft.AspNetCore.Http 
-@using Microsoft.AspNetCore.Identity 
-@using Microsoft.AspNetCore.Components.Authorization 
+@inject QuestionProvider QuestionProvider
+
+
 
 <h3>Quiz:</h3>
 
@@ -73,7 +76,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        // Initialize points and total questions from the current user
         var context = httpContextAccessor.HttpContext;
         var currentUser = await userManager.GetUserAsync(context.User);
 
@@ -83,10 +85,10 @@
             totalQuestions = currentUser.totalQuestions;
         }
 
-        // Load all questions first
-        LoadQuestions();
+        // Load all questions from the provider asynchronously
+        Questions = await QuestionProvider.GetQuestionsAsync();
 
-        // Filter questions based on the selected topic after loading them
+        // Ensure topic is selected before filtering questions
         if (!string.IsNullOrEmpty(TopicService.Topic))
         {
             FilteredQuestions = Questions
@@ -95,23 +97,23 @@
         }
         else
         {
-            FilteredQuestions = new List<Questions>(); // Empty list if no topic is selected
+            FilteredQuestions = new List<Questions>();
         }
 
-        // Base class initialization
         await base.OnInitializedAsync();
     }
 
-    private void LoadQuestions()
-    {
-        // Add your questions here
-        Questions.AddRange(new List<Questions> {
-            new Questions { Question = "Which group is always found in an alcohol?", Topic = "Alcohols", Option = new List<string> { "Hydroxyl", "Carbonyl", "Nitrile", "Phosphate" }, Answer = "Hydroxyl" },
-            new Questions { Question = "Which one is organic?", Topic = "Alkanes", Option = new List<string> { "Tin", "Carbon", "Lead", "Platinum" }, Answer = "Carbon" },
-            new Questions { Question = "Who's the electrophile?", Topic = "Alkenes", Option = new List<string> { "Ammonia", "Hydroxide Ion", "Hydronium Ion", "Cyanide Ion" }, Answer = "Hydronium Ion" },
-            new Questions { Question = "Which one is aminey?", Topic = "Amines", Option = new List<string> { "Bomb", "Nitrogen", "Propanone", "Sulfur" }, Answer = "Nitrogen" }
-        });
-    }
+
+    // private void LoadQuestions()
+    // {
+    //     // Add your questions here
+    //     Questions.AddRange(new List<Questions> {
+    //         new Questions { Question = "Which group is always found in an alcohol?", Topic = "Alcohols", Option = new List<string> { "Hydroxyl", "Carbonyl", "Nitrile", "Phosphate" }, Answer = "Hydroxyl" },
+    //         new Questions { Question = "Which one is organic?", Topic = "Alkanes", Option = new List<string> { "Tin", "Carbon", "Lead", "Platinum" }, Answer = "Carbon" },
+    //         new Questions { Question = "Who's the electrophile?", Topic = "Alkenes", Option = new List<string> { "Ammonia", "Hydroxide Ion", "Hydronium Ion", "Cyanide Ion" }, Answer = "Hydronium Ion" },
+    //         new Questions { Question = "Which one is aminey?", Topic = "Amines", Option = new List<string> { "Bomb", "Nitrogen", "Propanone", "Sulfur" }, Answer = "Nitrogen" }
+    //     });
+    // }
 
     protected void OptionSelected(string option)
     {
