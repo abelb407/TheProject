@@ -1,8 +1,54 @@
 ﻿@page "/"
-@inject NavigationManager NavigationManager
 
+
+@inject NavigationManager NavigationManager
+@inject UserManager<User> userManager 
+@inject IHttpContextAccessor httpContextAccessor 
+@using TheProject.Context
+@using TheProject.Components.Account
+@using Microsoft.AspNetCore.Http @*For retrieving client ID*@
+@using Microsoft.AspNetCore.Identity @*For retrieving client ID*@
+@using Microsoft.AspNetCore.Components.Authorization @*Page only accessible by those authorized*@
+
+
+@using TheProject.Model
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hi everybody</h1>
+<h1>Hi, @username. </h1>
 
+<h2> You have @points points, and you have answered @totalQuestions questions!</h2>
+
+
+
+
+
+
+@code {
+
+    private string username;
+    private int points;
+    private int totalQuestions;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        username = "guest";
+        points = 0;
+        totalQuestions = 0; 
+
+        var context = httpContextAccessor.HttpContext;
+
+        var currentUser = await userManager.GetUserAsync(context.User); 
+        if (currentUser != null)
+        {
+            username = currentUser.UserName;
+            points = currentUser.Points;
+            totalQuestions = currentUser.totalQuestions; 
+        }
+
+    }
+
+
+
+}

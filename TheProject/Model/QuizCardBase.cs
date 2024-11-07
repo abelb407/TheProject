@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Security.AccessControl;
 
+
 namespace TheProject.Model
 {
     public class QuizCardBase : ComponentBase
@@ -24,17 +25,21 @@ namespace TheProject.Model
             return base.OnInitializedAsync();
         }
 
+
         protected void OptionSelected(string option)
         {
-            if (option == Questions[questionIndex].Answer ) 
+            if (option == Questions[questionIndex].Answer)
             {
                 //When an option is selected: increment score by 1 if answer is correct, then increment the index to load the next question
-                score++; 
+                score++;
+
             }
 
-            questionIndex++; 
+            questionIndex++;
+
 
         }
+
 
         protected void NextQuestion()
         {
@@ -50,7 +55,7 @@ namespace TheProject.Model
 
                 Question = "Which group is always found in an alcohol?",
 
-                Topic = "Alcohols",
+                Topic = "Alkanes",
 
                 Option = new List<string>() { "Hydroxy", "Carbonyl", "Nitrile", "Phosphate" },
 
@@ -81,7 +86,7 @@ namespace TheProject.Model
                 Question = "Who's the electrophile?",
 
 
-                Topic = "Alkenes",
+                Topic = "Alkanes",
 
                 Option = new List<string>() { "Ammonia", "Hydroxide Ion", "Hydronium Ion", "Cyanide Ion" },
 

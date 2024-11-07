@@ -5,6 +5,13 @@
 @inject NavigationManager NavigationManager
 @inject TopicSelectionService TopicService
 @inherits QuizCardBase
+@inject UserManager<User> userManager
+@inject IHttpContextAccessor httpContextAccessor
+@using TheProject.Context
+@using TheProject.Components.Account
+@using Microsoft.AspNetCore.Http 
+@using Microsoft.AspNetCore.Identity 
+@using Microsoft.AspNetCore.Components.Authorization 
 
 <h3>Quiz:</h3>
 
@@ -53,7 +60,15 @@
 
 @code {
 
+
     private List<Questions> FilteredQuestions =>
         Questions.Where(q => string.Equals(q.Topic, TopicService.Topic, StringComparison.OrdinalIgnoreCase)).ToList();
+
+
+  
+
+
+
+
   
 }
