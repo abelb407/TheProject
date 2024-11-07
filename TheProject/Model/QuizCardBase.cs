@@ -12,6 +12,9 @@ namespace TheProject.Model
         public int questionIndex = 0; 
         public int score = 0;
 
+
+      
+
         protected void RestartQuiz()
         {
             score = 0;
@@ -32,7 +35,7 @@ namespace TheProject.Model
             {
                 //When an option is selected: increment score by 1 if answer is correct, then increment the index to load the next question
                 score++;
-
+                
             }
 
             questionIndex++;

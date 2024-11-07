@@ -44,7 +44,7 @@
                 </div>
                 <div class="quiz-floor">
                     <button class="btn restart-btn" @onclick="RestartQuiz">Restart!</button>
-                    <a href="/" class="btn next-btn">To Home</a>
+                    <button href="/" class="btn next-btn" @onclick="SubmitResults">To Home</button>
                 </div>
             }
 
@@ -61,11 +61,92 @@
 @code {
 
 
-    private List<Questions> FilteredQuestions =>
-        Questions.Where(q => string.Equals(q.Topic, TopicService.Topic, StringComparison.OrdinalIgnoreCase)).ToList();
 
+    public List<Questions> Questions { get; set; } = new List<Questions>();
+    private List<Questions> FilteredQuestions { get; set; } = new List<Questions>();
 
-  
+    public int questionIndex = 0;
+    public int score = 0;
+
+    private int points;
+    private int totalQuestions;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Initialize points and total questions from the current user
+        var context = httpContextAccessor.HttpContext;
+        var currentUser = await userManager.GetUserAsync(context.User);
+
+        if (currentUser != null)
+        {
+            points = currentUser.Points;
+            totalQuestions = currentUser.totalQuestions;
+        }
+
+        // Load all questions first
+        LoadQuestions();
+
+        // Filter questions based on the selected topic after loading them
+        if (!string.IsNullOrEmpty(TopicService.Topic))
+        {
+            FilteredQuestions = Questions
+                .Where(q => string.Equals(q.Topic, TopicService.Topic, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+        else
+        {
+            FilteredQuestions = new List<Questions>(); // Empty list if no topic is selected
+        }
+
+        // Base class initialization
+        await base.OnInitializedAsync();
+    }
+
+    private void LoadQuestions()
+    {
+        // Add your questions here
+        Questions.AddRange(new List<Questions> {
+            new Questions { Question = "Which group is always found in an alcohol?", Topic = "Alcohols", Option = new List<string> { "Hydroxyl", "Carbonyl", "Nitrile", "Phosphate" }, Answer = "Hydroxyl" },
+            new Questions { Question = "Which one is organic?", Topic = "Alkanes", Option = new List<string> { "Tin", "Carbon", "Lead", "Platinum" }, Answer = "Carbon" },
+            new Questions { Question = "Who's the electrophile?", Topic = "Alkenes", Option = new List<string> { "Ammonia", "Hydroxide Ion", "Hydronium Ion", "Cyanide Ion" }, Answer = "Hydronium Ion" },
+            new Questions { Question = "Which one is aminey?", Topic = "Amines", Option = new List<string> { "Bomb", "Nitrogen", "Propanone", "Sulfur" }, Answer = "Nitrogen" }
+        });
+    }
+
+    protected void OptionSelected(string option)
+    {
+        if (FilteredQuestions.Count > questionIndex && option == FilteredQuestions[questionIndex].Answer)
+        {
+            score++;
+         
+        }
+        questionIndex++;
+
+        }
+
+        protected void RestartQuiz()
+        {
+            score = 0;
+            questionIndex = 0;
+        }
+
+    protected async Task SubmitResults()
+    {
+        points += score;
+        totalQuestions += FilteredQuestions.Count;
+
+        var context = httpContextAccessor.HttpContext;
+        var currentUser = await userManager.GetUserAsync(context.User);
+
+        if (currentUser != null)
+        {
+            currentUser.Points = points;
+            currentUser.totalQuestions = totalQuestions;
+
+            // Assuming userManager has an UpdateAsync method to save changes
+            await userManager.UpdateAsync(currentUser);
+        }
+    }
 
 
 
