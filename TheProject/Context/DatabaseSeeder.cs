@@ -27,22 +27,7 @@ namespace TheProject.Context
                 await _roleManager.CreateAsync(new IdentityRole("Admin"));
 
                 await _roleManager.CreateAsync(new IdentityRole("User"));
-
-                var adminEmail = "abel@gmail.com";
-                var adminPassword = "Eth123!";
-
-                var admin = new User
-                {
-                    Email = adminEmail,
-                    Points = 0, 
-                    totalQuestions = 0, 
-                    School = "Southfields Academy",
-                    Gender = "Male", 
-                };
-
          
-                await _userManager.CreateAsync(admin, adminPassword);
-                await _userManager.AddToRoleAsync(admin, "Admin");
 
             }
 
@@ -58,13 +43,20 @@ namespace TheProject.Context
         private List<Questions> GetQuestions()
         {
             return new List<Questions>
-    {
-        new Questions { Question = "Which group is always found in an alcohol?", Topic = "Alcohols", Option = new List<string> { "Hydroxyl", "Carbonyl", "Nitrile", "Phosphate" }, Answer = "Hydroxyl" },
-        new Questions { Question = "Which one is organic?", Topic = "Alkanes", Option = new List<string> { "Tin", "Carbon", "Lead", "Platinum" }, Answer = "Carbon" },
-        new Questions { Question = "Who's the electrophile?", Topic = "Alkenes", Option = new List<string> { "Ammonia", "Hydroxide Ion", "Hydronium Ion", "Cyanide Ion" }, Answer = "Hydronium Ion" },
-        new Questions { Question = "Which one is aminey?", Topic = "Amines", Option = new List<string> { "Bomb", "Nitrogen", "Propanone", "Sulfur" }, Answer = "Nitrogen" }
+        {
+            new Questions { Question = "Which group is always found in an alcohol?", Topic = "Alcohols", Option = ["Hydroxyl", "Carbonyl", "Nitrile", "Phosphate"], Answer = "Hydroxyl", Solution = "Alcohols are defined by a hydroxy group" },
+            new Questions { Question = "Which one is organic?", Topic = "Alkanes", Option = ["Tin", "Carbon", "Lead", "Platinum"], Answer = "Carbon", Solution = "Organic chemistry revolves around carbon" },
+            new Questions { Question = "Who's the electrophile?", Topic = "Alkenes", Option = ["Ammonia, NH3", "Hydroxide Ion, OH", "Hydronium Ion, H30", "Cyanide Ion, CN "], Answer = "Hydronium Ion, H30", Solution = "One oxygen with three bonds leads to a net positive charge" },
+            new Questions { Question = "Which one is always in an amine?", Topic = "Amines", Option = ["TNT", "Nitrogen", "Propanone", "Sulfur"], Answer = "Nitrogen", Solution = "The amine functional group is NH2" },
+            new Questions { Question = "Which one is the halogen?", Topic = "Halogenoalkanes", Option = ["Strontium", "Astantine", "Selenium", "Rubidium"], Answer = "Astantine", Solution = "The halogens are in Group 7, as is Astantine."},
+            new Questions { Question = "What is the catalyst for the oxidation of alcohols?", Topic = "Aldehydes and Ketones", Option = ["Acidified Chromium Permanganate", "Alcoholic Sodium Hydroxide", "Acidified Potassium Dichromate", "Milk"], Answer = "Acidified Potassium Dichromate", Solution = "Acidified Potassium Dichromate contains [ Cr2O7 ]2- ions which are reduced to oxidise the alcohol. Acidic conditions allow water to be formed as a result instead of unstable oxygen compounds" },
+            new Questions { Question = "What is a practial application of an ester?", Topic = "Carboxylic Acids and Esters", Option = ["Gas chamber execution", "Violent reducing agent", "Bleaching", "Perfumes"], Answer = "Perfumes", Solution = "Esters tend to smell nice, and they are soluble in ethanol which is used in spray perfumes" },
         };
         }
+
+
+        //Aldehydes & Ketones
+        //Carboxylic Acids
 
 
     }

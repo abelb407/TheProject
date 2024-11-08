@@ -48,7 +48,8 @@
                 <div class="quiz-floor">
                     <button class="btn restart-btn" @onclick="RestartQuiz">Restart!</button>
                     <button href="/" class="btn next-btn" @onclick="SubmitResults">To Home</button>
-                </div>
+                    <a href="/quiz" class="btn next-btn">Pick another Quiz!</a>
+                   </div>
             }
 
         }
@@ -104,16 +105,6 @@
     }
 
 
-    // private void LoadQuestions()
-    // {
-    //     // Add your questions here
-    //     Questions.AddRange(new List<Questions> {
-    //         new Questions { Question = "Which group is always found in an alcohol?", Topic = "Alcohols", Option = new List<string> { "Hydroxyl", "Carbonyl", "Nitrile", "Phosphate" }, Answer = "Hydroxyl" },
-    //         new Questions { Question = "Which one is organic?", Topic = "Alkanes", Option = new List<string> { "Tin", "Carbon", "Lead", "Platinum" }, Answer = "Carbon" },
-    //         new Questions { Question = "Who's the electrophile?", Topic = "Alkenes", Option = new List<string> { "Ammonia", "Hydroxide Ion", "Hydronium Ion", "Cyanide Ion" }, Answer = "Hydronium Ion" },
-    //         new Questions { Question = "Which one is aminey?", Topic = "Amines", Option = new List<string> { "Bomb", "Nitrogen", "Propanone", "Sulfur" }, Answer = "Nitrogen" }
-    //     });
-    // }
 
     protected void OptionSelected(string option)
     {
@@ -134,20 +125,22 @@
 
     protected async Task SubmitResults()
     {
-        points += score;
-        totalQuestions += FilteredQuestions.Count;
+      
 
         var context = httpContextAccessor.HttpContext;
         var currentUser = await userManager.GetUserAsync(context.User);
 
         if (currentUser != null)
         {
-            currentUser.Points = points;
-            currentUser.totalQuestions = totalQuestions;
+            currentUser.Points += points;
+            currentUser.totalQuestions += FilteredQuestions.Count();
 
             // Assuming userManager has an UpdateAsync method to save changes
             await userManager.UpdateAsync(currentUser);
         }
+
+        NavigationManager.NavigateTo("/"); 
+
     }
 
 

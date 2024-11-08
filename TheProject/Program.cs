@@ -15,7 +15,8 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<IdentityUserAccessor>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
-
+builder.Services.AddScoped<QuestionProvider>();
+builder.Services.AddScoped<DatabaseSeeder>();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = IdentityConstants.ApplicationScheme;
@@ -31,7 +32,17 @@ builder.Services.AddIdentityCore<User>()
 
 builder.Services.AddSingleton<TopicSelectionService>();
 
+builder.Services.AddIdentityCore<User>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<DatabaseContext>()
+    .AddSignInManager();
+
 var app = builder.Build();
+
+using var scope = app.Services.CreateScope();
+var seeder = scope.ServiceProvider.GetService<DatabaseSeeder>();
+await seeder!.Seed();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -20,13 +20,13 @@ namespace TheProject.Model
             score = 0;
             questionIndex = 0;
         }
-        protected override Task OnInitializedAsync()
-        {
+        //protected override Task OnInitializedAsync()
+        //{
 
-            LoadQuestions();
+        //    LoadQuestions();
 
-            return base.OnInitializedAsync();
-        }
+        //    return base.OnInitializedAsync();
+        //}
 
 
         protected void OptionSelected(string option)
@@ -50,72 +50,72 @@ namespace TheProject.Model
         }
 
 
-        private void LoadQuestions()
-        {
-            // Questions which are displayed in the quiz. 
-            Questions q1 = new Questions
-            {
+        //private void LoadQuestions()
+        //{
+        //    // Questions which are displayed in the quiz. 
+        //    Questions q1 = new Questions
+        //    {
 
-                Question = "Which group is always found in an alcohol?",
+        //        Question = "Which group is always found in an alcohol?",
 
-                Topic = "Alkanes",
+        //        Topic = "Alkanes",
 
-                Option = new List<string>() { "Hydroxy", "Carbonyl", "Nitrile", "Phosphate" },
+        //        Option = new List<string>() { "Hydroxy", "Carbonyl", "Nitrile", "Phosphate" },
 
-                Answer = "Hydroxy",
+        //        Answer = "Hydroxy",
 
              
-            };
+        //    };
 
 
-            Questions q2 = new Questions
-            {
+        //    Questions q2 = new Questions
+        //    {
 
-                Question = "Which one is organic?",
+        //        Question = "Which one is organic?",
 
-                Topic = "Alkanes",
+        //        Topic = "Alkanes",
 
-                Option = new List<string>() { "Tin", "Carbon", "Lead", "Platinum" },
+        //        Option = new List<string>() { "Tin", "Carbon", "Lead", "Platinum" },
 
-                Answer = "Carbon",
+        //        Answer = "Carbon",
 
                 
-            };
+        //    };
 
 
-            Questions q3 = new Questions
-            {
+        //    Questions q3 = new Questions
+        //    {
 
-                Question = "Who's the electrophile?",
+        //        Question = "Who's the electrophile?",
 
 
-                Topic = "Alkanes",
+        //        Topic = "Alkanes",
 
-                Option = new List<string>() { "Ammonia", "Hydroxide Ion", "Hydronium Ion", "Cyanide Ion" },
+        //        Option = new List<string>() { "Ammonia", "Hydroxide Ion", "Hydronium Ion", "Cyanide Ion" },
 
-                Answer = "Hydronium Ion",
+        //        Answer = "Hydronium Ion",
 
                
-            };
+        //    };
 
 
-            Questions q4 = new Questions
-            {
+        //    Questions q4 = new Questions
+        //    {
 
-                Question = "Which one smells like rotten eggs?",
+        //        Question = "Which one smells like rotten eggs?",
 
 
-                Topic = "Alkanes",
+        //        Topic = "Alkanes",
 
-                Option = new List<string>() { "Chlorine", "Dog", "Propanone", "Hydrogen Sulfide" },
+        //        Option = new List<string>() { "Chlorine", "Dog", "Propanone", "Hydrogen Sulfide" },
 
-                Answer = "Hydrogen Sulfide",
+        //        Answer = "Hydrogen Sulfide",
 
              
-            };
+        //    };
 
-            // Code assigning numerical order to the questions, so incrementing moves between them 
-            Questions.AddRange(new List<Questions> { q1, q2, q3, q4 } );
-        }
+        //    // Code assigning numerical order to the questions, so incrementing moves between them 
+        //    Questions.AddRange(new List<Questions> { q1, q2, q3, q4 } );
+        //}
     }
 }
