@@ -7,6 +7,7 @@
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Components.Authorization
+@using System.Windows.Forms; 
 @inject NavigationManager NavigationManager
 @inject TopicSelectionService TopicService
 @inherits QuizCardBase
@@ -74,7 +75,7 @@
 
     private int points;
     private int totalQuestions;
-
+    // Find the instance of the current user immediately because points and total question values may be changed
     protected override async Task OnInitializedAsync()
     {
         var context = httpContextAccessor.HttpContext;
@@ -85,6 +86,7 @@
             points = currentUser.Points;
             totalQuestions = currentUser.totalQuestions;
         }
+
 
         // Load all questions from the provider asynchronously
         Questions = await QuestionProvider.GetQuestionsAsync();
@@ -108,15 +110,18 @@
 
     protected void OptionSelected(string option)
     {
+        // If the answer is correct, score increases. Regardless of answer the next question is loaded.
         if (FilteredQuestions.Count > questionIndex && option == FilteredQuestions[questionIndex].Answer)
         {
             score++;
-         
+            
         }
-        questionIndex++;
+       questionIndex++;
+       
+ 
 
         }
-
+        // If the user wants to restart, QuestionIndex goes back to the first question at Index 0
         protected void RestartQuiz()
         {
             score = 0;
@@ -126,7 +131,7 @@
     protected async Task SubmitResults()
     {
       
-
+        // When the user is finished, their points and totalquestions values are increased accordingly
         var context = httpContextAccessor.HttpContext;
         var currentUser = await userManager.GetUserAsync(context.User);
 
@@ -135,10 +140,10 @@
             currentUser.Points += points;
             currentUser.totalQuestions += FilteredQuestions.Count();
 
-            // Assuming userManager has an UpdateAsync method to save changes
+            // Save changes to the user
             await userManager.UpdateAsync(currentUser);
         }
-
+        // Return home
         NavigationManager.NavigateTo("/"); 
 
     }

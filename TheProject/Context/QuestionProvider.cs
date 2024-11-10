@@ -12,6 +12,7 @@ namespace TheProject.Context
             _context = Context; 
         }
 
+        // Method which returns the list of questions to the quiz page from the seeder
         public async Task<List<Questions>> GetQuestionsAsync()
         {
             return await _context.Questions.ToListAsync(); 
