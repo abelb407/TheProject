@@ -15,8 +15,6 @@
 @inject IHttpContextAccessor httpContextAccessor
 @inject QuestionProvider QuestionProvider
 
-
-
 <h3>Quiz:</h3>
 
 <div class="container">
@@ -50,16 +48,34 @@
                     <button class="btn restart-btn" @onclick="RestartQuiz">Restart!</button>
                     <button href="/" class="btn next-btn" @onclick="SubmitResults">To Home</button>
                     <a href="/quiz" class="btn next-btn">Pick another Quiz!</a>
-                   </div>
-            }
+                </div>
 
-        }
-        else
-        {
-            <div class="app-title">No questions available for the selected topic.</div>
+                @* Separate card for quiz answers *@
+                <div class="results-card">
+                    <h3>Correct Answers</h3>
+                    <div class="quiz-answers">
+                        @foreach (var Question in FilteredQuestions)
+                        {
+                            <div class="sol-card">
+                                @Question.Question
+                            </div>
+
+                            <div> 
+                                @Question.Answer 
+                            </div>
+
+                            <div class="sol-card-text">
+                                @Question.Solution
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
         }
     </div>
 </div>
+
+
 
         
 

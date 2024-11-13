@@ -70,4 +70,27 @@
     box-shadow: -1.5px 1.5px 10px rgba(0,0,0,0.3);
 }
 
+.sol-card {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #f9f9f9; /* Optional: background color for styling */
+    border-radius: 8px; /* Optional: rounded corners */
+    font-weight: bold; 
+}
 
+.sol-card-text {
+    line-height: 1.5;
+}
+
+.results-card {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f1f1f1; /* Light background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for card effect */
+}
+
+.quiz-answers {
+    margin-top: 10px;
+}
