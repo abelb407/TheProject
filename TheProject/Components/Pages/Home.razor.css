@@ -1,0 +1,44 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('/wwwroot/database/background.PNG') left repeat-y, 
+    url('/wwwroot/database/background.PNG') right repeat-y, 
+    linear-gradient(to right, #f1f1f1 20%, white 30%, white 70%, #f1f1f1 80%); 
+    background-size: auto; 
+    background-attachment: fixed; 
+}
+
+
+
+
+
+.badge-container {
+    display: flex;
+    flex-direction: column; /* Stack badges vertically */
+    align-items: flex-start; /* Align badges to the left */
+    margin-bottom: 20px;
+}
+
+.bigger-badge {
+    font-size: 5rem; /* Increase font size */
+    padding: 10px 20px; /* Add padding to make them larger */
+    margin-bottom: 10px; /* Space between badges */
+}
+
+.progress {
+    height: 30px;
+    background-color: #e0e0e0; /* Background color for progress bar */
+    border-radius: 5px; /* Rounded corners */
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: #ffc107; /* Customize progress bar color */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333; /* Text color for readability */
+    height: 100%;
+}

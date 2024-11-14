@@ -94,16 +94,7 @@
     // Find the instance of the current user immediately because points and total question values may be changed
     protected override async Task OnInitializedAsync()
     {
-        var context = httpContextAccessor.HttpContext;
-        var currentUser = await userManager.GetUserAsync(context.User);
-
-        if (currentUser != null)
-        {
-            points = currentUser.Points;
-            totalQuestions = currentUser.totalQuestions;
-        }
-
-
+       
         // Load all questions from the provider asynchronously
         Questions = await QuestionProvider.GetQuestionsAsync();
 

@@ -15,13 +15,53 @@
 
 <PageTitle>Home</PageTitle>
 
+<div class="body">
+
 <h1>Hello @username. </h1>
 
 <h7> You have @points points, and you have answered @totalQuestions questions!</h7>
 
+<div class="badge-container">
+    <span class="badge rounded-pill bg-warning bigger-badge">@points</span>
+    <span class="badge rounded-pill bg-warning bigger-badge">@totalQuestions</span>
+</div>
+<br />
+<div class="row g-0">
+    <div class="col-md-3">
+        <p>Point Meter</p>
+        <div align="right"></div>
+        <div class="progress" style="height: 30px;">
+            <div class="bar progress-bar" role="progressbar"
+                 aria-valuenow="@points"
+                 style="width: calc((@points + 10) * 10 / 25)%"
+                 aria-valuemin="0"
+                 aria-valuemax="255">
+                @points
+            </div>
+        </div>
+    </div>
+</div>
+
+<br/>
+
+<div class="row g-0">
+    <div class="col-md-3">
+        <p>Question Meter</p>
+        <div align="right"></div>
+        <div class="progress" style="height: 30px;">
+            <div class="bar progress-bar" role="progressbar"
+                 aria-valuenow="@totalQuestions"
+                 style="width: calc((@totalQuestions) * 10 / 25)%"
+                 aria-valuemin="0"
+                 aria-valuemax="255">
+                @points
+            </div>
+        </div>
+    </div>
+</div>
 
 
-
+</div>
 
 
 @code {
