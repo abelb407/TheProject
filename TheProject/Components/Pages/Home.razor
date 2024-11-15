@@ -17,48 +17,82 @@
 
 <div class="body">
 
-<h1>Hello @username. </h1>
+<h1 class="white">Hello @username. </h1>
 
-<h7> You have @points points, and you have answered @totalQuestions questions!</h7>
+<h7 class="white"> Check out some of our features! </h7>
 
-<div class="badge-container">
-    <span class="badge rounded-pill bg-warning bigger-badge">@points</span>
-    <span class="badge rounded-pill bg-warning bigger-badge">@totalQuestions</span>
-</div>
+<br /> 
+<br /> 
+
+    <div class="container">
+        <div class="row marginal-spacing">
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/Notes.PNG" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Notes</h5>
+                        <p class="card-text">Study from our selection of notes.</p>
+                        <a href="/notes" class="btn nbutton">Select</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/Quiz.PNG" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Quiz</h5>
+                        <p class="card-text">Test your knowledge.</p>
+                        <a href="/quiz" class="btn nbutton">Select</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/Leaderboard.PNG" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Leaderboard</h5>
+                        <p class="card-text">Check out the top scorers.</p>
+                        <a href="/leaderboard" class="btn nbutton">Select</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br />
+    <br />
+
+    <div class="badge-container">
+        <div class="row marginal-spacing">
+            <div class="col-md-6 text-center">
+                <div class="badge-item">
+                    <p>Points</p>
+                    <span class="badge rounded-pill bg-warning bigger-badge">@points</span>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <div class="badge-item">
+                    <p>Total Questions</p>
+                    <span class="badge rounded-pill bg-warning bigger-badge">@totalQuestions</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <br />
-<div class="row g-0">
-    <div class="col-md-3">
-        <p>Point Meter</p>
-        <div align="right"></div>
-        <div class="progress" style="height: 30px;">
-            <div class="bar progress-bar" role="progressbar"
-                 aria-valuenow="@points"
-                 style="width: calc((@points + 10) * 10 / 25)%"
-                 aria-valuemin="0"
-                 aria-valuemax="255">
-                @points
-            </div>
-        </div>
-    </div>
-</div>
+<br />
 
-<br/>
-
-<div class="row g-0">
-    <div class="col-md-3">
-        <p>Question Meter</p>
-        <div align="right"></div>
-        <div class="progress" style="height: 30px;">
-            <div class="bar progress-bar" role="progressbar"
-                 aria-valuenow="@totalQuestions"
-                 style="width: calc((@totalQuestions) * 10 / 25)%"
-                 aria-valuemin="0"
-                 aria-valuemax="255">
-                @points
-            </div>
-        </div>
+    <div class="progress-container mb-4">
+        <div class="progress-bar">@points%</div>
     </div>
-</div>
+
+
+    <div class="progress-container mb-4">
+        <div class="progress-bar">@totalQuestions%</div>
+    </div>
 
 
 </div>

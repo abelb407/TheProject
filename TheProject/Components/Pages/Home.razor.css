@@ -2,29 +2,88 @@
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: url('/wwwroot/database/background.PNG') left repeat-y, 
-    url('/wwwroot/database/background.PNG') right repeat-y, 
-    linear-gradient(to right, #f1f1f1 20%, white 30%, white 70%, #f1f1f1 80%); 
+    background: url('/background.PNG');
     background-size: auto; 
     background-attachment: fixed; 
 }
 
 
+.progress-container {
+    width: 80%; /* Make the container span 80% of the screen */
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 30px;
+    margin-bottom: 20px; /* Space between progress bars */
+    position: relative;
+}
 
+.progress-bar {
+    height: 100%;
+    background-color: #4caf50; /* Default color */
+    color: lightgoldenrodyellow;
+    text-align: center;
+    line-height: 30px; /* Aligns text vertically */
+    transition: width 1s ease-in-out; /* Smooth transition for width */
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: progress-animation 1s ease-in-out; /* Animation for progress bar */
+}
+
+    .progress-bar.striped {
+        background: repeating-linear-gradient( 45deg, rgba(76, 175, 80, 0.2) 0, rgba(76, 175, 80, 0.2) 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px );
+    }
+
+@keyframes progress-animation {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+
+nbutton {
+    background-color: black; /* Black background */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Add padding */
+    font-size: 1rem; /* Adjust font size */
+    border-radius: 5px; /* Optional: Rounded corners */
+    cursor: pointer; /* Pointer cursor for hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+    nbutton:hover {
+        background-color: #333; /* Darker gray on hover */
+    }
 
 
 .badge-container {
-    display: flex;
-    flex-direction: column; /* Stack badges vertically */
-    align-items: flex-start; /* Align badges to the left */
-    margin-bottom: 20px;
+    display: flex; /* Arrange items side by side */
+    justify-content: space-evenly; /* Distribute badges evenly */
+    align-items: center; /* Align badges and text vertically */
+    margin: 20px 0; /* Add spacing around the container */
 }
 
-.bigger-badge {
-    font-size: 5rem; /* Increase font size */
-    padding: 10px 20px; /* Add padding to make them larger */
-    margin-bottom: 10px; /* Space between badges */
+.badge-item {
+    text-align: center; /* Center the label and badge */
 }
+
+    .badge-item p {
+        margin: 0 0 5px; /* Add space below the label */
+        font-size: 1rem; /* Adjust font size of the label */
+        font-weight: bold; /* Make the label bold */
+    }
+
+.bigger-badge {
+    font-size: 1.5rem; /* Make badges larger */
+    padding: 10px 20px; /* Adjust padding for larger size */
+}
+
 
 .progress {
     height: 30px;
