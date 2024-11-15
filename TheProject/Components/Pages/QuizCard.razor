@@ -10,7 +10,7 @@
 @using System.Windows.Forms; 
 @inject NavigationManager NavigationManager
 @inject TopicSelectionService TopicService
-@inherits QuizCardBase
+
 @inject UserManager<User> userManager
 @inject IHttpContextAccessor httpContextAccessor
 @inject QuestionProvider QuestionProvider
@@ -120,7 +120,7 @@
         // If the answer is correct, score increases. Regardless of answer the next question is loaded.
         if (FilteredQuestions.Count > questionIndex && option == FilteredQuestions[questionIndex].Answer)
         {
-            score++;
+            score = score + 1;
             
         }
        questionIndex++;
@@ -142,9 +142,9 @@
         var context = httpContextAccessor.HttpContext;
         var currentUser = await userManager.GetUserAsync(context.User);
 
-        if (currentUser != null)
+        if (currentUser != null) // Add the user's score and questions answered to their overall amount
         {
-            currentUser.Points += points;
+            currentUser.Points += score;
             currentUser.totalQuestions += FilteredQuestions.Count();
 
             // Save changes to the user

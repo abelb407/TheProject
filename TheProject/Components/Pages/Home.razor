@@ -11,15 +11,16 @@
 @using Microsoft.AspNetCore.Components.Authorization @*Page only accessible by those authorized*@
 
 
+
 @using TheProject.Model
 
 <PageTitle>Home</PageTitle>
 
 <div class="body">
 
-<h1 class="white">Hello @username. </h1>
+<h1>Hello @username. </h1>
 
-<h7 class="white"> Check out some of our features! </h7>
+<h7> Check out some of our features! </h7>
 
 <br /> 
 <br /> 
@@ -27,34 +28,34 @@
     <div class="container">
         <div class="row marginal-spacing">
             <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
+                <div class="card bg-dark text-white" style="width: 18rem;">
                     <img class="card-img-top" src="/Notes.PNG" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Notes</h5>
                         <p class="card-text">Study from our selection of notes.</p>
-                        <a href="/notes" class="btn nbutton">Select</a>
+                        <a href="/notes" class="btn bg-white text-dark nbutton">Select</a>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
+                <div class="card bg-dark text-white" style="width: 18rem;">
                     <img class="card-img-top" src="/Quiz.PNG" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Quiz</h5>
                         <p class="card-text">Test your knowledge.</p>
-                        <a href="/quiz" class="btn nbutton">Select</a>
+                        <a href="/quiz" class="btn bg-white text-dark nbutton">Select</a>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
+                <div class="card bg-dark text-white" style="width: 18rem;">
                     <img class="card-img-top" src="/Leaderboard.PNG" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Leaderboard</h5>
                         <p class="card-text">Check out the top scorers.</p>
-                        <a href="/leaderboard" class="btn nbutton">Select</a>
+                        <a href="/leaderboard" class="btn bg-white text-dark nbutton">Select</a>
                     </div>
                 </div>
             </div>
@@ -70,13 +71,13 @@
             <div class="col-md-6 text-center">
                 <div class="badge-item">
                     <p>Points</p>
-                    <span class="badge rounded-pill bg-warning bigger-badge">@points</span>
+                    <span class="badge rounded-pill bg-dark text-white bigger-badge">@points</span>
                 </div>
             </div>
             <div class="col-md-6 text-center">
                 <div class="badge-item">
-                    <p>Total Questions</p>
-                    <span class="badge rounded-pill bg-warning bigger-badge">@totalQuestions</span>
+                    <p>Questions</p>
+                    <span class="badge rounded-pill bg-dark text-white bigger-badge">@totalQuestions</span>
                 </div>
             </div>
         </div>
@@ -85,13 +86,15 @@
 <br />
 <br />
 
+<h4> Progession Bars: </h4>
+
     <div class="progress-container mb-4">
-        <div class="progress-bar">@points%</div>
+        <div role="progressbar" class="progress-bar bg-dark text-white" style="width:@(points * 100 / 255)%;">@points</div>
     </div>
 
 
     <div class="progress-container mb-4">
-        <div class="progress-bar">@totalQuestions%</div>
+        <div role="progressbar" class="progress-bar bg-dark text-white" style="width:@(totalQuestions * 100 / 255)%;">@totalQuestions</div>
     </div>
 
 
@@ -123,6 +126,23 @@
 
     }
 
+    private string GetColour(int? val)
+    {
+        if (val > 99)
+        {
+            return "progress-bar progress-bar-striped progress-bar-animated bg-success";
+        }
+
+        else if (val > 59)
+        {
+            return "progress-bar bg-warning";
+        }
+
+        else
+        {
+            return "progress-bar bg-danger";
+        }
+    }
 
 
 }

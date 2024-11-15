@@ -9,17 +9,17 @@ namespace TheProject.Model
        
         public List<Questions> Questions { get; set; } = new List<Questions>();
 
-        public int questionIndex = 0; 
-        public int score = 0;
+        //public int questionIndex = 0; 
+        //public int score = 0;
 
 
       
 
-        protected void RestartQuiz()
-        {
-            score = 0;
-            questionIndex = 0;
-        }
+        //protected void RestartQuiz()
+        //{
+        //    score = 0;
+        //    questionIndex = 0;
+        //}
         //protected override Task OnInitializedAsync()
         //{
 
@@ -29,25 +29,25 @@ namespace TheProject.Model
         //}
 
 
-        protected void OptionSelected(string option)
-        {
-            if (option == Questions[questionIndex].Answer)
-            {
-                //When an option is selected: increment score by 1 if answer is correct, then increment the index to load the next question
-                score++;
+        //protected void OptionSelected(string option)
+        //{
+        //    if (option == Questions[questionIndex].Answer)
+        //    {
+        //        //When an option is selected: increment score by 1 if answer is correct, then increment the index to load the next question
+        //        score++;
                 
-            }
+        //    }
 
-            questionIndex++;
-
-
-        }
+        //    questionIndex++;
 
 
-        protected void NextQuestion()
-        {
-            questionIndex++; 
-        }
+        //}
+
+
+        //protected void NextQuestion()
+        //{
+        //    questionIndex++; 
+        //}
 
 
         //private void LoadQuestions()

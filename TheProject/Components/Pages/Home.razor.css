@@ -9,7 +9,7 @@
 
 
 .progress-container {
-    width: 80%; /* Make the container span 80% of the screen */
+  
     background-color: #e0e0e0;
     border-radius: 10px;
     overflow: hidden;
@@ -21,7 +21,7 @@
 .progress-bar {
     height: 100%;
     background-color: #4caf50; /* Default color */
-    color: lightgoldenrodyellow;
+
     text-align: center;
     line-height: 30px; /* Aligns text vertically */
     transition: width 1s ease-in-out; /* Smooth transition for width */
@@ -47,8 +47,7 @@
 
 
 nbutton {
-    background-color: black; /* Black background */
-    color: white; /* White text */
+  
     border: none; /* Remove default border */
     padding: 10px 20px; /* Add padding */
     font-size: 1rem; /* Adjust font size */
@@ -82,6 +81,7 @@ nbutton {
 .bigger-badge {
     font-size: 1.5rem; /* Make badges larger */
     padding: 10px 20px; /* Adjust padding for larger size */
+    color: darkslategrey
 }
 
 
