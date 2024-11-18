@@ -1,5 +1,5 @@
 ﻿﻿.option {
-    background-color: #fff;
+    color: white;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 8px;
@@ -8,8 +8,8 @@
 }
 
 .option:hover {
-    background-color: #28a745;
-    color: #fff;
+    background-color: springgreen;
+    color: white;
     border-radius: 3px;
     padding: 10px;
 }

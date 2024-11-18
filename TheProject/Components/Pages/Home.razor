@@ -89,23 +89,44 @@
 <h4> Progession Bars: </h4>
 
     <div class="progress-container mb-4">
-        <div role="progressbar" class="progress-bar bg-dark text-white" style="width:@(points * 100 / 255)%;">@points</div>
+        <div role="progressbar" class="progress-bar bg-dark text-white" style="--progress-width:@(points * 100 / 255)%;">@points</div>
     </div>
 
 
     <div class="progress-container mb-4">
-        <div role="progressbar" class="progress-bar bg-dark text-white" style="width:@(totalQuestions * 100 / 255)%;">@totalQuestions</div>
+        <div role="progressbar" class="progress-bar bg-dark text-white" style="--progress-width:@(totalQuestions * 100 / 255)%;">@totalQuestions</div>
     </div>
 
 
+ <h5> User search: </h5>
+
+    <div class="search-container">
+        <input type="text"
+               @bind="searchText"
+               class="form-control"
+               placeholder="Search..." />
+        <br />
+        <button class="btn btn-primary bg-dark text-white" @onclick="@Search">Search</button>
+    </div>
+
 </div>
 
+
+
+<div class="search-container"> 
+
+
+
+</div>
 
 @code {
 
     private string username;
     private int points;
     private int totalQuestions;
+    private string searchText;
+    private string searchResult;
+    private List<User> AllUsers { get; set; } = new List<User>();
 
 
     protected override async Task OnInitializedAsync()
@@ -113,6 +134,8 @@
         username = "guest";
         points = 0;
         totalQuestions = 0; 
+
+        // AllUsers = await UserProvider.GetUsersAsync();
 
         var context = httpContextAccessor.HttpContext;
 
@@ -126,23 +149,33 @@
 
     }
 
-    private string GetColour(int? val)
+
+    private async Task Search()
     {
-        if (val > 99)
+        if (!string.IsNullOrWhiteSpace(searchText))
         {
-            return "progress-bar progress-bar-striped progress-bar-animated bg-success";
-        }
-
-        else if (val > 59)
-        {
-            return "progress-bar bg-warning";
-        }
-
-        else
-        {
-            return "progress-bar bg-danger";
+            // Return a username if found 
+           
         }
     }
+
+    // private string GetColour(int? val)
+    // {
+    //     if (val > 99)
+    //     {
+    //         return "progress-bar progress-bar-striped progress-bar-animated bg-success";
+    //     }
+
+    //     else if (val > 59)
+    //     {
+    //         return "progress-bar bg-warning";
+    //     }
+
+    //     else
+    //     {
+    //         return "progress-bar bg-danger";
+    //     }
+    // }
 
 
 }

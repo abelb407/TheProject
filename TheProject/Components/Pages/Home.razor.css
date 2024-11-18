@@ -29,6 +29,7 @@
     top: 0;
     left: 0;
     animation: progress-animation 1s ease-in-out; /* Animation for progress bar */
+    animation-fill-mode: forwards
 }
 
     .progress-bar.striped {
@@ -41,7 +42,7 @@
     }
 
     100% {
-        width: 100%;
+        width: var(--progress-width);
     }
 }
 

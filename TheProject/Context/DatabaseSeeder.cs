@@ -27,7 +27,8 @@ namespace TheProject.Context
                 await _roleManager.CreateAsync(new IdentityRole("Admin"));
 
                 await _roleManager.CreateAsync(new IdentityRole("User"));
-         
+                
+                var Users = GetUsers();
 
             }
 
@@ -41,6 +42,17 @@ namespace TheProject.Context
 
         }
         // Method which retrieves the questions from the database     
+
+        private List<User> GetUsers()
+        {
+            return new List<User>
+            {
+
+
+
+            };
+        }
+
         private List<Questions> GetQuestions()
         {
             return new List<Questions>
