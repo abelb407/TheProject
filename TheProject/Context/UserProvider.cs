@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TheProject.Model;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace TheProject.Context
 {
@@ -15,17 +16,16 @@ namespace TheProject.Context
             _userManager = userManager;
         }
 
-        public async Task<List<User>> GetUsersAsync()
+        public async Task<List<User>> GetUsersAsync(string username)
         {
-          
-            return await _context.Users.ToListAsync();
+
+            return await _context.Users
+            .Where(u => u.UserName.Contains(username)) 
+            .ToListAsync();
+
         }
 
-        public async Task<User?> GetUserByIdAsync(string? id)
-        {
-            // Return the user with the id
-            return await _context.Users.FindAsync(id);
-        }
+  
     }
 }
 

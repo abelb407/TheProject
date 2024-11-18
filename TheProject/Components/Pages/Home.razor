@@ -3,6 +3,7 @@
 
 @inject NavigationManager NavigationManager
 @inject UserManager<User> userManager 
+@inject UserProvider UserProvider
 @inject IHttpContextAccessor httpContextAccessor 
 @using TheProject.Context
 @using TheProject.Components.Account
@@ -101,13 +102,28 @@
  <h5> User search: </h5>
 
     <div class="search-container">
-        <input type="text"
-               @bind="searchText"
-               class="form-control"
-               placeholder="Search..." />
-        <br />
-        <button class="btn btn-primary bg-dark text-white" @onclick="@Search">Search</button>
+        <input @bind="searchText" placeholder="Enter username" />
+        <button class="btn btn-primary bg-dark text-white" @onclick="Search">Search</button>
     </div>
+
+
+    @if (searchResult != null && searchResult.Count > 0)
+    {
+        <ul>
+            @foreach (var user in searchResult)
+            {
+                <li>
+                    <strong>Username:</strong> @user.UserName <br />
+                    <strong>Points:</strong> @user.Points <br />
+                    <strong>Total Questions Answered:</strong> @user.totalQuestions
+                </li>
+            }
+        </ul>
+    }
+    else if (searchExecuted)
+    {
+        <p>No users found.</p>
+    }
 
 </div>
 
@@ -125,8 +141,9 @@
     private int points;
     private int totalQuestions;
     private string searchText;
-    private string searchResult;
+    private List<User> searchResult;
     private List<User> AllUsers { get; set; } = new List<User>();
+    private bool searchExecuted = false;
 
 
     protected override async Task OnInitializedAsync()
@@ -135,8 +152,8 @@
         points = 0;
         totalQuestions = 0; 
 
-        // AllUsers = await UserProvider.GetUsersAsync();
-
+       
+       
         var context = httpContextAccessor.HttpContext;
 
         var currentUser = await userManager.GetUserAsync(context.User); 
@@ -149,14 +166,11 @@
 
     }
 
-
     private async Task Search()
     {
-        if (!string.IsNullOrWhiteSpace(searchText))
-        {
-            // Return a username if found 
-           
-        }
+        searchExecuted = true;
+        searchResult = await UserProvider.GetUsersAsync(searchText);
+
     }
 
     // private string GetColour(int? val)
