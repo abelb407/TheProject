@@ -109,6 +109,9 @@
 
     @if (searchResult != null && searchResult.Count > 0)
     {
+
+        <h5> Users Found: @searchResult.Count </h5>
+
         <ul>
             @foreach (var user in searchResult)
             {
