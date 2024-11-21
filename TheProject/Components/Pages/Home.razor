@@ -94,17 +94,16 @@
 
 
 
-  <EditForm>  </EditForm>
 
 <h4> Progession Bars: </h4>
 
     <div class="progress-container mb-4">
-        <div role="progressbar" class="progress-bar bg-dark text-white" style="--progress-width:@(points * 100 / 255)%;">@points</div>
+        <div role="progressbar" class="progress-bar progress-bar-striped bg-dark text-white" style="--progress-width:@(points * 100 / 255)%;">@points</div>
     </div>
 
 
     <div class="progress-container mb-4">
-        <div role="progressbar" class="progress-bar bg-dark text-white" style="--progress-width:@(totalQuestions * 100 / 255)%;">@totalQuestions</div>
+        <div role="progressbar" class="progress-bar progress-bar-striped bg-dark text-white" style="--progress-width:@(totalQuestions * 100 / 255)%;">@totalQuestions</div>
     </div>
 
 
@@ -137,15 +136,18 @@
         <p>No users found.</p>
     }
 
+
+ <p> Want to update your account details? Click below: </p>
+
+<a href="/update" class="btn btn-primary text-white bg-dark"> Update </a>
+
+
+
 </div>
 
 
 
-<div class="search-container"> 
 
-
-
-</div>
 
 @code {
 
@@ -156,6 +158,7 @@
     private List<User> searchResult;
     private List<User> AllUsers { get; set; } = new List<User>();
     private bool searchExecuted = false;
+ 
 
 
     protected override async Task OnInitializedAsync()
@@ -164,8 +167,8 @@
         points = 0;
         totalQuestions = 0; 
 
-       
-       
+
+
         var context = httpContextAccessor.HttpContext;
 
         var currentUser = await userManager.GetUserAsync(context.User); 
@@ -184,6 +187,10 @@
         searchResult = await UserProvider.GetUsersAsync(searchText);
 
     }
+
+    
+
+
 
     // private string GetColour(int? val)
     // {
