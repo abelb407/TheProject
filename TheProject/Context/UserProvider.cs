@@ -18,7 +18,7 @@ namespace TheProject.Context
 
         public async Task<List<User>> GetUsersAsync(string username)
         {
-
+            // Get all the users in the database who match the search parameter
             return await _context.Users
             .Where(u => u.UserName.Contains(username)) 
             .ToListAsync();

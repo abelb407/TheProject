@@ -11,7 +11,7 @@
 
 <h3>Update Account Details</h3>
 
-<EditForm Model="currentUserDetails" OnInvalidSubmit="UpdateAccount"> 
+<EditForm Model="currentUserDetails" OnValidSubmit="@UpdateAccount"> 
     <DataAnnotationsValidator /> 
     <ValidationSummary />
 
@@ -29,24 +29,15 @@
         <InputText id="school" @bind-Value="currentUserDetails.School" class="form-control" />
     </div>
 
-    <div>
-        <label for="points">Points:</label>
-        <InputNumber id="points" @bind-Value="currentUserDetails.Points" class="form-control" readonly />
-    </div>
-
-    <div>
-        <label for="totalQuestions">Total Questions:</label>
-        <InputNumber id="totalQuestions" @bind-Value="currentUserDetails.totalQuestions" class="form-control" readonly />
-    </div>
     <br />
     <button type="submit" class="btn btn-primary bg-dark text-white">Update</button>
 
-
-
 </EditForm>
 
+<p> @updateFailed 
+</p>
 
-
+<p> @updateSuccessful </p>
 
 
 @code {
@@ -56,43 +47,43 @@
 
     protected override async Task OnInitializedAsync()
     {
-            var context = httpContextAccessor.HttpContext;
+        var context = httpContextAccessor.HttpContext;
 
-            // Get the current user from the user manager
-            var currentUser = await userManager.GetUserAsync(context.User);
-            if (currentUser != null)
-            {
-                // Populate currentUserDetails with data from the current user
-                currentUserDetails.UserName = currentUser.UserName;
-                currentUserDetails.Email = currentUser.Email;
-                currentUserDetails.School = currentUser.School;
-                currentUserDetails.Points = currentUser.Points;
-                currentUserDetails.totalQuestions = currentUser.totalQuestions;
-            }
-        
-     
+        // Get the current user from the user manager
+        var currentUser = await userManager.GetUserAsync(context.User);
+        if (currentUser != null)
+        {
+            //  Data from the current user
+            currentUserDetails.UserName = currentUser.UserName;
+            currentUserDetails.Email = currentUser.Email;
+            currentUserDetails.School = currentUser.School;
+            currentUserDetails.Points = currentUser.Points;
+            currentUserDetails.totalQuestions = currentUser.totalQuestions;
+        }
+
+
     }
 
     private async Task UpdateAccount()
     {
-      
-            var context = httpContextAccessor.HttpContext;
 
-            // Get the current user and update their details
-            var currentUser = await userManager.GetUserAsync(context.User);
-            if (currentUser != null)
-            {
-                currentUser.UserName = currentUserDetails.UserName;
-                currentUser.Email = currentUserDetails.Email;
-                currentUser.School = currentUserDetails.School;
-                currentUser.Points = currentUserDetails.Points;
-                currentUser.totalQuestions = currentUserDetails.totalQuestions;
+       var context = httpContextAccessor.HttpContext;
 
-                var result = await userManager.UpdateAsync(currentUser);
-                updateSuccessful = result.Succeeded;
-                updateFailed = !result.Succeeded;
-            }
-        
+        // Get the current user and update their details
+        var currentUser = await userManager.GetUserAsync(context.User);
+         if (currentUser != null)
+        {
+            currentUser.UserName = currentUserDetails.UserName;
+            currentUser.Email = currentUserDetails.Email;
+            currentUser.School = currentUserDetails.School;
+
+             var result = await userManager.UpdateAsync(currentUser);
+             updateSuccessful = result.Succeeded;
+             updateFailed = !result.Succeeded;
+         }
+
+
+
         
     }
 }

@@ -66,7 +66,7 @@
 
     <br />
     <br />
-
+    @* Take in the user's points and question totals, and display them with a badge and with progress bars *@
     <div class="badge-container">
         <div class="row marginal-spacing">
             <div class="col-md-6 text-center">
@@ -83,18 +83,8 @@
             </div>
         </div>
     </div>
-
 <br />
 <br />
-
-@if (points > 100)
-    {
-        <h1> Congratulations on 100 points :) </h1>
-    }
-
-
-
-
 <h4> Progession Bars: </h4>
 
     <div class="progress-container mb-4">
@@ -106,7 +96,7 @@
         <div role="progressbar" class="progress-bar progress-bar-striped bg-dark text-white" style="--progress-width:@(totalQuestions * 100 / 255)%;">@totalQuestions</div>
     </div>
 
-
+@*Allow user to input a name to search for*@
  <h5> User search: </h5>
 
     <div class="search-container">
@@ -114,12 +104,12 @@
         <button class="btn btn-primary bg-dark text-white" @onclick="Search">Search</button>
     </div>
 
-
+    @* Show results of the search if there are any*@
     @if (searchResult != null && searchResult.Count > 0)
     {
 
         <h5> Users Found: @searchResult.Count </h5>
-
+        @* Increment through each results username, points and questions answered*@
         <ul>
             @foreach (var user in searchResult)
             {
@@ -140,6 +130,11 @@
  <p> Want to update your account details? Click below: </p>
 
 <a href="/update" class="btn btn-primary text-white bg-dark"> Update </a>
+
+    @if (points > 100)
+    {
+        <h1> Congratulations, you reached 100 points :) </h1>
+    }
 
 
 
@@ -163,12 +158,13 @@
 
     protected override async Task OnInitializedAsync()
     {
+        // If the user is logged out they're a guest with nothing
         username = "guest";
         points = 0;
         totalQuestions = 0; 
 
 
-
+        // If the user is logged in access their details
         var context = httpContextAccessor.HttpContext;
 
         var currentUser = await userManager.GetUserAsync(context.User); 
@@ -184,6 +180,8 @@
     private async Task Search()
     {
         searchExecuted = true;
+
+        // Redirect to the UserProvider to carry out the search
         searchResult = await UserProvider.GetUsersAsync(searchText);
 
     }
