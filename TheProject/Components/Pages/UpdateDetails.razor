@@ -10,7 +10,7 @@
 @using Microsoft.AspNetCore.Identity @*For retrieving client ID*@
 
 <h3>Update Account Details</h3>
-
+@*Form for updating users - each row corresponds to part of the user's account*@
 <EditForm Model="currentUserDetails" OnValidSubmit="@UpdateAccount"> 
     <DataAnnotationsValidator /> 
     <ValidationSummary />
@@ -44,12 +44,12 @@
     private User currentUserDetails = new User();
     private bool updateSuccessful = false;
     private bool updateFailed = false;
-
+   
     protected override async Task OnInitializedAsync()
     {
         var context = httpContextAccessor.HttpContext;
 
-        // Get the current user from the user manager
+        // Get the current user and all of their data from the user manager to display on the form
         var currentUser = await userManager.GetUserAsync(context.User);
         if (currentUser != null)
         {
@@ -66,10 +66,10 @@
 
     private async Task UpdateAccount()
     {
-
+       
        var context = httpContextAccessor.HttpContext;
 
-        // Get the current user and update their details
+        // On valid submission, get the current user and update their details
         var currentUser = await userManager.GetUserAsync(context.User);
          if (currentUser != null)
         {
