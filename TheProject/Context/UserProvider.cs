@@ -27,6 +27,7 @@ namespace TheProject.Context
 
         public async Task<List<User>> GetUsersOrderedByPointsAsync()
         {
+            // Order the users in order of points, highest to lowest and return as a list
             return await _context.Users
                 .OrderByDescending(u => u.Points)
                 .ToListAsync();
