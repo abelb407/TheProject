@@ -25,9 +25,15 @@ namespace TheProject.Context
 
         }
 
-    
+        public async Task<List<User>> GetUsersOrderedByPointsAsync()
+        {
+            return await _context.Users
+                .OrderByDescending(u => u.Points)
+                .ToListAsync();
+        }
 
-  
+
+
     }
 }
 

@@ -1,8 +1,55 @@
 ﻿@page "/leaderboard"
 
-<h2>Leaderboard</h2>
-<h5> View the users with the most points here. </h5>
+@using TheProject.Components 
+@using TheProject.Context
+@using TheProject.Migrations
+@using TheProject.Model
+@inject UserProvider UserProvider
+
+
+<h3>Leaderboard</h3>
+@* Conditionals for if the users havent loaded, or if there aren't any*@
+@if (users == null)
+{
+    <p>Loading!</p>
+}
+else if (users.Count == 0)
+{
+    <p>No users are available.</p>
+}
+else
+{
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Points</th>
+                <th> Questions Answered </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in users)
+            {
+                <tr>
+                    <td>@rank</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Points</td>
+                    <td>@user.totalQuestions</td>
+                </tr>
+             
+           }
+        </tbody>
+    </table>
+}
 
 @code {
+    private List<User> users;
+    private int rank = 1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = await UserProvider.GetUsersOrderedByPointsAsync();
+    }
 
 }
