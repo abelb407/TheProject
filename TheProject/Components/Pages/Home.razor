@@ -15,7 +15,12 @@
 
 @using TheProject.Model
 
+
 <PageTitle>Home</PageTitle>
+
+@* Only display page contents if the user is signed in *@
+@if (isLoggedIn == true)
+{
 
 <div class="body">
 
@@ -131,17 +136,137 @@
 
 <a href="/update" class="btn btn-primary text-white bg-dark"> Update </a>
 
-    @if (points > 100)
-    {
-        <h1> Congratulations, you reached 100 points :) </h1>
-    }
+        @* Display achievement cards depending on how many points the user has *@
+        <h4> Achievements </h4>
+        @if (points < 25)
+        {
+            <p> Earn 25 points for your first award. </p>
+        }
+        <div class="row">
+            @if (points > 25 && points < 50)
+            {
+                <div class="col-md-3">
+                    <div class="card bg-dark text-white" style="width: 18rem;">
+                        <img class="card-img-top" src="/twentyfivepoints.PNG" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">25 Points!</h5>
+                            <p class="card-text">You have earned 25 points.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            else if (points > 50 && points < 100)
+            {
+                <div class="col-md-3">
+                    <div class="card bg-dark text-white" style="width: 18rem;">
+                        <img class="card-img-top" src="/twentyfivepoints.PNG" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">25 Points!</h5>
+                            <p class="card-text">You have earned 25 points.</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-md-3">
+                    <div class="card bg-dark text-white" style="width: 18rem;">
+                        <img class="card-img-top" src="/fiftypoints.PNG" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">50 Points!</h5>
+                            <p class="card-text">You have earned 50 points.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            else if (points > 100 && points < 200)
+            {
+                <div class="col-md-3">
+                    <div class="card bg-dark text-white" style="width: 18rem;">
+                        <img class="card-img-top" src="/twentyfivepoints.PNG" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">25 Points!</h5>
+                            <p class="card-text">You have earned 25 points.</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-md-3">
+                    <div class="card bg-dark text-white" style="width: 18rem;">
+                        <img class="card-img-top" src="/fiftypoints.PNG" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">50 Points!</h5>
+                            <p class="card-text">You have earned 50 points.</p>
+                        </div>
+                    </div>
+                </div>
 
-</div>
+                <div class="col-md-3">
+                    <div class="card bg-dark text-white" style="width: 18rem;">
+                        <img class="card-img-top" src="/hundredpoints.PNG" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">100 Points!</h5>
+                            <p class="card-text">You have earned 100 points.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            else if (points > 200)
+            {
+                <div class="col-md-3">
+                    <div class="card bg-dark text-white" style="width: 18rem;">
+                        <img class="card-img-top" src="/twentyfivepoints.PNG" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">25 Points!</h5>
+                            <p class="card-text">You have earned 25 points.</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-md-3">
+                    <div class="card bg-dark text-white" style="width: 18rem;">
+                        <img class="card-img-top" src="/fiftypoints.PNG" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">50 Points!</h5>
+                            <p class="card-text">You have earned 50 points.</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-md-3">
+                    <div class="card bg-dark text-white" style="width: 18rem;">
+                        <img class="card-img-top" src="/hundredpoints.PNG" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">100 Points!</h5>
+                            <p class="card-text">You have earned 100 points.</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-md-3">
+                    <div class="card bg-dark text-white" style="width: 18rem;">
+                        <img class="card-img-top" src="/twohundredpoints.PNG" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">200 Points!</h5>
+                            <p class="card-text">You have earned 200 points.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+ 
+    </div>
+
+}
+
+// If they are signed out, prompt them to sign up/in 
+else
+
+{
+    <h1> Please log in to access this page. </h1>
+
+    <a href="/account/register" class="btn bg-white text-dark">Register</a>
+    <a href="/account/login" class="btn bg-white text-dark">Login</a>
+}
 
 
 @code {
@@ -153,8 +278,8 @@
     private List<User> searchResult;
     private List<User> AllUsers { get; set; } = new List<User>();
     private bool searchExecuted = false;
- 
-
+    private bool isLoggedIn = false; 
+   
 
     protected override async Task OnInitializedAsync()
     {
@@ -173,6 +298,8 @@
             username = currentUser.UserName;
             points = currentUser.Points;
             totalQuestions = currentUser.totalQuestions; 
+            isLoggedIn = true; 
+            // If currentUser is not null, it means that someone is logged in
         }
 
     }
