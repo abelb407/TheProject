@@ -25,6 +25,8 @@ namespace TheProject.Context
 
         }
 
+
+
         public async Task<List<User>> GetUsersOrderedByPointsAsync()
         {
             // Order the users in order of points, highest to lowest and return as a list

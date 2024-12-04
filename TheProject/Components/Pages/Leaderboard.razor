@@ -1,25 +1,23 @@
 ﻿@page "/leaderboard"
 
-@using TheProject.Components 
+@using TheProject.Components
 @using TheProject.Context
 @using TheProject.Migrations
 @using TheProject.Model
 @inject UserProvider UserProvider
 
-
 <h3>Leaderboard</h3>
-@* Conditionals for if the users havent loaded, or if there aren't any*@
-@if (users == null)
+
+@if (filteredUsers == null)
 {
     <p>Loading!</p>
 }
-else if (users.Count == 0)
+else if (filteredUsers.Count == 0)
 {
-    <p>No users are available.</p>
+    <p>No users match the search criteria.</p>
 }
 else
 {
-    @* Table to list every user *@
     <table class="table table-dark table-striped">
         <thead>
             <tr>
@@ -30,26 +28,57 @@ else
             </tr>
         </thead>
         <tbody>
-            @for (var i = 0; i < users.Count; i++) // Loop through every user recieved from the UserProvider
+            @for (var i = 0; i < filteredUsers.Count; i++)
             {
                 <tr>
-                    <td>@(i + 1)</td> @* Rank is the index of the loop + 1 since there is no rank zero, and it needs to go up by 1 each time *@
-                    <td>@users[i].UserName</td>
-                    <td>@users[i].Points</td>
-                    <td>@users[i].totalQuestions</td>
+                    <td>@(i + 1)</td>
+                    <td>@filteredUsers[i].UserName</td>
+                    <td>@filteredUsers[i].Points</td>
+                    <td>@filteredUsers[i].totalQuestions</td>
                 </tr>
             }
         </tbody>
     </table>
 }
 
+
+<div class="mb-3">
+
+    <h4> Search: </h4>
+    <input type="text" @bind="searchQuery" class="form-control" placeholder="Search by username..." /> @* User enters what they want to search *@
+
+    <a class="btn btn-primary bg-dark text-light mt-2" @onclick="PerformSearch">Search</a> @* Carry out the search *@
+
+    <a class="btn btn-secondary bg-dark text-light mt-2 ms-2" @onclick="ResetSearch">Reset</a> @* Reset back to default page *@
+
+</div>
+
+
 @code {
     private List<User> users;
-    private int rank = 1;
+    private List<User> filteredUsers;
+    private string searchQuery = "";
 
     protected override async Task OnInitializedAsync()
     {
         users = await UserProvider.GetUsersOrderedByPointsAsync();
+        filteredUsers = users; // Initialize the filtered list
     }
 
+
+    private void PerformSearch()
+    {
+        if (!string.IsNullOrWhiteSpace(searchQuery)) // If the query is not blank, filter the users list
+        {
+            filteredUsers = users
+                .Where(u => u.UserName.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
+                .ToList(); // List users who fit the criteria 
+        }
+    }
+
+    private void ResetSearch() // Return to the default leaderboard
+    {
+        searchQuery = "";
+        filteredUsers = users;
+    }
 }
