@@ -35,6 +35,13 @@ namespace TheProject.Context
                 .ToListAsync();
         }
 
+        public async Task<List<User>> GetUsersOrderedByQuestionsAsync()
+        {
+            // Order the users in order of questions, highest to lowest and return as a list
+            return await _context.Users
+                .OrderByDescending(u => u.totalQuestions)
+                .ToListAsync();
+        }
 
 
     }

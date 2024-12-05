@@ -4,9 +4,21 @@
 @using TheProject.Context
 @using TheProject.Migrations
 @using TheProject.Model
+@using Microsoft.AspNetCore.Http @*For retrieving client ID*@
+@using Microsoft.AspNetCore.Identity @*For retrieving client ID*@
 @inject UserProvider UserProvider
+@inject NavigationManager NavigationManager
+@inject UserManager<User> userManager
+@inject IHttpContextAccessor httpContextAccessor
+
 
 <h3>Leaderboard</h3>
+
+
+@if( isLoggedIn == true )
+{
+    
+
 
 @if (filteredUsers == null)
 {
@@ -49,22 +61,63 @@ else
 
     <a class="btn btn-primary bg-dark text-light mt-2" @onclick="PerformSearch">Search</a> @* Carry out the search *@
 
+    <a class="btn btn-secondary bg-dark text-light mt-2 ms-2" @onclick="OrderByQuestions"> Order by Total Questions </a> @* Re-order leaderboard to depend on total questions *@
+
+    <a class="btn btn-secondary bg-dark text-light mt-2 ms-2" @onclick="FindRank"> Find My Rank </a> @* Allow users to see their rank *@
+
     <a class="btn btn-secondary bg-dark text-light mt-2 ms-2" @onclick="ResetSearch">Reset</a> @* Reset back to default page *@
 
-</div>
+    </div>
 
+}
+
+else
+{
+    
+    <h1> Please sign in to access this page. </h1>
+
+    <a class="btn btn-secondary bg-dark text-light mt-2 ms-2"  href="/account/register" > Register </a> 
+
+    <a class="btn btn-secondary bg-dark text-light mt-2 ms-2" href="/account/login" > Login </a> 
+
+
+}
 
 @code {
     private List<User> users;
     private List<User> filteredUsers;
     private string searchQuery = "";
+    private string username = "";
+    private int points;
+    private int totalQuestions;
+    private bool isLoggedIn = false; 
 
     protected override async Task OnInitializedAsync()
     {
         users = await UserProvider.GetUsersOrderedByPointsAsync();
         filteredUsers = users; // Initialize the filtered list
+
+        // If the user is logged in access their details
+        var context = httpContextAccessor.HttpContext;
+
+        var currentUser = await userManager.GetUserAsync(context.User);
+        if (currentUser != null)
+        {
+            username = currentUser.UserName;
+            points = currentUser.Points;
+            totalQuestions = currentUser.totalQuestions;
+            isLoggedIn = true;
+            // If currentUser is not null, it means that someone is logged in
+        }
     }
 
+
+    private void OrderByQuestions() // Take the existing list of users, sort this to be in question answered order
+    {
+        filteredUsers = users
+                 .OrderByDescending(u => u.totalQuestions)
+                .ToList();
+    }
 
     private void PerformSearch()
     {
@@ -74,6 +127,14 @@ else
                 .Where(u => u.UserName.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
                 .ToList(); // List users who fit the criteria 
         }
+    }
+
+    private void FindRank()
+    {
+        filteredUsers = users // Only show the current user so they can see their info 
+        .Where(u => u.UserName == username)
+        .ToList(); 
+
     }
 
     private void ResetSearch() // Return to the default leaderboard
