@@ -30,6 +30,9 @@ else if (filteredUsers.Count == 0)
 }
 else
 {
+
+    <h4> Your rank: @currentRank </h4>
+
     <table class="table table-dark table-striped">
         <thead>
             <tr>
@@ -62,13 +65,61 @@ else
     <a class="btn btn-primary bg-dark text-light mt-2" @onclick="PerformSearch">Search</a> @* Carry out the search *@
 
     <a class="btn btn-secondary bg-dark text-light mt-2 ms-2" @onclick="OrderByQuestions"> Order by Total Questions </a> @* Re-order leaderboard to depend on total questions *@
-
-    <a class="btn btn-secondary bg-dark text-light mt-2 ms-2" @onclick="FindRank"> Find My Rank </a> @* Allow users to see their rank *@
+@* 
+    <a class="btn btn-secondary bg-dark text-light mt-2 ms-2" @onclick="FindRank"> Find My Rank </a>
+    *@
 
     <a class="btn btn-secondary bg-dark text-light mt-2 ms-2" @onclick="ResetSearch">Reset</a> @* Reset back to default page *@
 
     </div>
 
+
+    <h4> Accolades </h4>
+
+        @if (currentRank == 1) // The users who are 1st, 2nd and 3rd will see their own special cards
+    {
+        <div class="col-md-3">
+            <div class="card bg-dark text-white" style="width: 18rem;">
+                <img class="card-img-top" src="/firstplace.PNG" alt="1st">
+                <div class="card-body">
+                    <h5 class="card-title">First Place</h5>
+                    <p class="card-text">Congratulations. You're at the top of the leaderboard!</p>
+                </div>
+            </div>
+        </div>
+
+    }
+
+    else if (currentRank == 2)
+    {
+        <div class="col-md-3">
+            <div class="card bg-dark text-white" style="width: 18rem;">
+                <img class="card-img-top" src="/secondplace.PNG" alt="2nd">
+                <div class="card-body">
+                    <h5 class="card-title">Second Place</h5>
+                    <p class="card-text">Congratulations. You're on the podium!</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    else if (currentRank == 3)
+    {
+        <div class="col-md-3">
+            <div class="card bg-dark text-white" style="width: 18rem;">
+                <img class="card-img-top" src="/thirdplace.PNG" alt="3rd">
+                <div class="card-body">
+                    <h5 class="card-title">First Place</h5>
+                    <p class="card-text">Congratulations. You're on the podium!</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    else
+    {
+        <p> Place on the podium for an accolade. </p>
+    }
 }
 
 else
@@ -90,7 +141,8 @@ else
     private string username = "";
     private int points;
     private int totalQuestions;
-    private bool isLoggedIn = false; 
+    private bool isLoggedIn = false;
+    private int currentRank;
 
     protected override async Task OnInitializedAsync()
     {
@@ -107,7 +159,9 @@ else
             points = currentUser.Points;
             totalQuestions = currentUser.totalQuestions;
             isLoggedIn = true;
-            // If currentUser is not null, it means that someone is logged in
+            currentRank = users.FindIndex(u => u.Id == currentUser.Id) + 1; // Find the index of the current user in the full list of users
+
+        // If currentUser is not null, it means that someone is logged in
         }
     }
 
@@ -129,13 +183,13 @@ else
         }
     }
 
-    private void FindRank()
-    {
-        filteredUsers = users // Only show the current user so they can see their info 
-        .Where(u => u.UserName == username)
-        .ToList(); 
+    // private void FindRank()
+    // {
+    //     filteredUsers = users // Only show the current user so they can see their info 
+    //     .Where(u => u.UserName == username)
+    //     .ToList(); 
 
-    }
+    // }
 
     private void ResetSearch() // Return to the default leaderboard
     {

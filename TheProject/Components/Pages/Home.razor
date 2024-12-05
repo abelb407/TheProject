@@ -150,7 +150,7 @@
             {
                 <div class="col-md-3">
                     <div class="card bg-dark text-white" style="width: 18rem;">
-                        <img class="card-img-top" src="/twentyfivepoints.PNG" alt="Card image cap">
+                        <img class="card-img-top" src="/twentyfivepoints.PNG" alt="25 Points">
                         <div class="card-body">
                             <h5 class="card-title">25 Points!</h5>
                             <p class="card-text">You have earned 25 points.</p>
@@ -162,7 +162,7 @@
             {
                 <div class="col-md-3">
                     <div class="card bg-dark text-white" style="width: 18rem;">
-                        <img class="card-img-top" src="/twentyfivepoints.PNG" alt="Card image cap">
+                        <img class="card-img-top" src="/twentyfivepoints.PNG" alt="25 Points">
                         <div class="card-body">
                             <h5 class="card-title">25 Points!</h5>
                             <p class="card-text">You have earned 25 points.</p>
@@ -172,7 +172,7 @@
 
                 <div class="col-md-3">
                     <div class="card bg-dark text-white" style="width: 18rem;">
-                        <img class="card-img-top" src="/fiftypoints.PNG" alt="Card image cap">
+                        <img class="card-img-top" src="/fiftypoints.PNG" alt="50 Points">
                         <div class="card-body">
                             <h5 class="card-title">50 Points!</h5>
                             <p class="card-text">You have earned 50 points.</p>
@@ -184,7 +184,7 @@
             {
                 <div class="col-md-3">
                     <div class="card bg-dark text-white" style="width: 18rem;">
-                        <img class="card-img-top" src="/twentyfivepoints.PNG" alt="Card image cap">
+                        <img class="card-img-top" src="/twentyfivepoints.PNG" alt="25 Points">
                         <div class="card-body">
                             <h5 class="card-title">25 Points!</h5>
                             <p class="card-text">You have earned 25 points.</p>
@@ -194,7 +194,7 @@
 
                 <div class="col-md-3">
                     <div class="card bg-dark text-white" style="width: 18rem;">
-                        <img class="card-img-top" src="/fiftypoints.PNG" alt="Card image cap">
+                        <img class="card-img-top" src="/fiftypoints.PNG" alt="50 Points">
                         <div class="card-body">
                             <h5 class="card-title">50 Points!</h5>
                             <p class="card-text">You have earned 50 points.</p>
@@ -204,7 +204,7 @@
 
                 <div class="col-md-3">
                     <div class="card bg-dark text-white" style="width: 18rem;">
-                        <img class="card-img-top" src="/hundredpoints.PNG" alt="Card image cap">
+                        <img class="card-img-top" src="/hundredpoints.PNG" alt="100 Points">
                         <div class="card-body">
                             <h5 class="card-title">100 Points!</h5>
                             <p class="card-text">You have earned 100 points.</p>
@@ -216,7 +216,7 @@
             {
                 <div class="col-md-3">
                     <div class="card bg-dark text-white" style="width: 18rem;">
-                        <img class="card-img-top" src="/twentyfivepoints.PNG" alt="Card image cap">
+                        <img class="card-img-top" src="/twentyfivepoints.PNG" alt="25 Points">
                         <div class="card-body">
                             <h5 class="card-title">25 Points!</h5>
                             <p class="card-text">You have earned 25 points.</p>
@@ -226,7 +226,7 @@
 
                 <div class="col-md-3">
                     <div class="card bg-dark text-white" style="width: 18rem;">
-                        <img class="card-img-top" src="/fiftypoints.PNG" alt="Card image cap">
+                        <img class="card-img-top" src="/fiftypoints.PNG" alt="50 Points">
                         <div class="card-body">
                             <h5 class="card-title">50 Points!</h5>
                             <p class="card-text">You have earned 50 points.</p>
@@ -236,7 +236,7 @@
 
                 <div class="col-md-3">
                     <div class="card bg-dark text-white" style="width: 18rem;">
-                        <img class="card-img-top" src="/hundredpoints.PNG" alt="Card image cap">
+                        <img class="card-img-top" src="/hundredpoints.PNG" alt="100 Points">
                         <div class="card-body">
                             <h5 class="card-title">100 Points!</h5>
                             <p class="card-text">You have earned 100 points.</p>
@@ -246,7 +246,7 @@
 
                 <div class="col-md-3">
                     <div class="card bg-dark text-white" style="width: 18rem;">
-                        <img class="card-img-top" src="/twohundredpoints.PNG" alt="Card image cap">
+                        <img class="card-img-top" src="/twohundredpoints.PNG" alt="200 Points">
                         <div class="card-body">
                             <h5 class="card-title">200 Points!</h5>
                             <p class="card-text">You have earned 200 points.</p>
@@ -285,6 +285,8 @@ else
     private List<User> AllUsers { get; set; } = new List<User>();
     private bool searchExecuted = false;
     private bool isLoggedIn = false; 
+
+
    
 
     protected override async Task OnInitializedAsync()
@@ -305,6 +307,8 @@ else
             points = currentUser.Points;
             totalQuestions = currentUser.totalQuestions; 
             isLoggedIn = true; 
+
+            
             // If currentUser is not null, it means that someone is logged in
         }
 
