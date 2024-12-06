@@ -1,0 +1,38 @@
+﻿
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+h2 {
+    color: darkgreen;
+    font-family: Arial, sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+    table thead tr {
+        background-color: lightgray;
+    }
+
+    table th, table td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+
+input[type="text"] {
+    width: 100%;
+    border: 1px solid black;
+}
+
+.correct {
+    border-color: green !important;
+}
+
+.incorrect {
+    border-color: red !important;
+}
