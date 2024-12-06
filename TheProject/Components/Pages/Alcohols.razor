@@ -84,15 +84,37 @@
     Alcohols are key compounds in organic chemistry with distinctive physical and chemical properties. Their reactivity and classification make them important in both academic and industrial contexts.
 </p>
 
-
+@* 
 <h2 style="color:darkgreen; font-family: Arial, sans-serif;"> Reaction Profile </h2>
 
 <p> aldehyde, ketone, ester, alkene </p>
 
 <button class="btn btn-primary bg-dark text-light" @onclick="ViewProfile" > View Reaction Table  </button>
 
+<h4> Alcohols: Table Quiz </h4>
+
+<p> Fill in the table below. Can you get it all correct? </p>
+
+<table style="border-collapse: collapse; width: 100%"> 
+    <thead> 
+        <tr style="background-color: lightgray"> 
+        <th style="border: 1px solid black; padding:8px;"> Reactant  </th>
+        <th style="border: 1px solid black; padding:8px;"> Product  </th>
+        <th style="border: 1px solid black; padding:8px;"> Mechanism  </th>
+        <th style="border: 1px solid black; padding:8px;"> Conditions  </th>
+        </tr>
+    </thead>
+    <tbody> 
+
+    </tbody>
+</table> *@
+
+
+
 @if (showProfile == true)
 { 
+    <br />
+    <br />
 
 <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
     <thead>
@@ -131,14 +153,14 @@
     </tbody>
 </table>
 
-
+    <br/> 
     <button class="btn btn-primary bg-dark text-light" @onclick="HideProfile"> Hide Reaction Table  </button>
 
  }
 
 else
 {
-
+    <br />
     <p> Hi </p>
     
 }
@@ -147,6 +169,11 @@ else
 
 @code {
     public bool showProfile = false; 
+
+
+
+
+
 
     private void ViewProfile()
     {
