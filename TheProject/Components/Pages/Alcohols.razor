@@ -85,6 +85,77 @@
 </p>
 
 
+<h2 style="color:darkgreen; font-family: Arial, sans-serif;"> Reaction Profile </h2>
+
+<p> aldehyde, ketone, ester, alkene </p>
+
+<button class="btn btn-primary bg-dark text-light" @onclick="ViewProfile" > View Reaction Table  </button>
+
+@if (showProfile == true)
+{ 
+
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
+    <thead>
+        <tr style="background-color: lightgray;">
+            <th style="border: 1px solid black; padding: 8px;">Reactant</th>
+            <th style="border: 1px solid black; padding: 8px;">Product</th>
+            <th style="border: 1px solid black; padding: 8px;">Mechanism</th>
+            <th style="border: 1px solid black; padding: 8px;">Conditions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">1° Alcohol</td>
+            <td style="border: 1px solid black; padding: 8px;">Aldehyde</td>
+            <td style="border: 1px solid black; padding: 8px;">Oxidation</td>
+            <td style="border: 1px solid black; padding: 8px;">Warm acidfied potassium dichromate, sulfuric acid, distil</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">2° Alcohol</td>
+            <td style="border: 1px solid black; padding: 8px;">Ketone</td>
+            <td style="border: 1px solid black; padding: 8px;">Oxidation</td>
+            <td style="border: 1px solid black; padding: 8px;">Warm acidified potassium dichromate, sulfuric acid, distill</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Alcohol</td>
+            <td style="border: 1px solid black; padding: 8px;">Alkene</td>
+            <td style="border: 1px solid black; padding: 8px;">Elimination</td>
+            <td style="border: 1px solid black; padding: 8px;">High temperature, excess acid</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Alcohol</td>
+            <td style="border: 1px solid black; padding: 8px;">Ester</td>
+            <td style="border: 1px solid black; padding: 8px;">Esterification</td>
+            <td style="border: 1px solid black; padding: 8px;">High temperature, acid cataylist, carboxylic acid</td>
+        </tr>
+    </tbody>
+</table>
+
+
+    <button class="btn btn-primary bg-dark text-light" @onclick="HideProfile"> Hide Reaction Table  </button>
+
+ }
+
+else
+{
+
+    <p> Hi </p>
+    
+}
+
+ 
+
 @code {
+    public bool showProfile = false; 
+
+    private void ViewProfile()
+    {
+        showProfile = true; 
+    }
+
+    private void HideProfile()
+    {
+        showProfile = false; 
+    }
 
 }
