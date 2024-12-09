@@ -120,6 +120,49 @@
 </table>
 
 
+<br />
+@if (hideAnswer == true) // Only show this button if the answer table is toggled off
+{
+    <a class="btn btn-primary text-white bg-dark" @onclick="SeeAnswer"> View Answers! </a> @*Button to see answers*@
+}
+
+<br /> 
+<br />
+@if (hideAnswer == false) @*If the user clicks the button, table with answers appears*@
+{
+
+    <table class="quiz-table">
+        <thead>
+            <tr>
+                <th>Reactant</th>
+                <th>Product</th>
+                <th>Mechanism</th>
+                <th>Conditions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in TableRows) // Display actual values, can't be typed over
+            {
+                <tr>
+                    <td><input type="text" value="@row.Reactant" readonly /></td>
+                    <td><input type="text" value="@row.ActualProduct" readonly /></td>
+                    <td><input type="text" value="@row.ActualMechanism" readonly /></td>
+                    <td><input type="text" value="@row.ActualConditions" readonly /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <br />
+
+    <a class="btn btn-primary text-white bg-dark" @onclick="HideAnswer"> Hide Answers! </a> @*Hide table after done viewing*@
+}
+
+else
+{
+    <p> ... </p>
+}
+
 @code {
 
 
@@ -127,6 +170,7 @@
     public int points;
     public int totalQuestions;
     public bool isLoggedIn = false;
+    public bool hideAnswer = true;
 
 
 
@@ -153,6 +197,16 @@
             // If currentUser is not null, it means that someone is logged in
         }
 
+    }
+
+    private void SeeAnswer() // Either make the table appear, or make it disappear 
+    {
+        hideAnswer = false;
+    } 
+
+    private void HideAnswer()
+    {
+        hideAnswer = true; 
     }
 
 
