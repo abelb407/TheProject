@@ -1,9 +1,20 @@
 ﻿@page "/alcohols"
 
+
 @inject NavigationManager NavigationManager
+@inject UserManager<User> userManager
+@inject UserProvider UserProvider
+@inject IHttpContextAccessor httpContextAccessor
+@using TheProject.Context
+@using TheProject.Components.Account
+@using TheProject.Model
+@using Microsoft.AspNetCore.Http @*For retrieving client ID*@
+@using Microsoft.AspNetCore.Identity @*For retrieving client ID*@
 
 
-<h3>Alcohols</h3>
+
+
+<h3>Alcohols</h3> @* All text for the topic:*@
 
 <p>
     Alcohols are organic compounds containing one or more hydroxyl (-OH) groups attached to a carbon atom.
@@ -99,7 +110,7 @@
         @foreach (var row in TableRows)
         {
             <tr>
-                <td>@row.Reactant</td>
+                <td>@row.Reactant</td> @* Users can enter their inputs, and then the inputs are checked*@
                 <td><input type="text" @bind="row.UserProduct" style="border-color: @BorderColourGiver(row.UserProduct, row.ActualProduct)" /></td>
                 <td><input type="text" @bind="row.UserMechanism" style="border-color: @BorderColourGiver(row.UserMechanism, row.ActualMechanism)" /></td>
                 <td><input type="text" @bind="row.UserConditions" style="border-color: @BorderColourGiver(row.UserConditions, row.ActualConditions)" /></td>
@@ -108,7 +119,57 @@
     </tbody>
 </table>
 
+
 @code {
+
+
+    public string username = "guest";
+    public int points;
+    public int totalQuestions;
+    public bool isLoggedIn = false;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        // If the user is logged out they're a guest with nothing
+        username = "guest";
+        points = 0;
+        totalQuestions = 0;
+
+
+        // If the user is logged in access their details
+        var context = httpContextAccessor.HttpContext;
+
+        var currentUser = await userManager.GetUserAsync(context.User);
+        if (currentUser != null)
+        {
+            username = currentUser.UserName;
+            points = currentUser.Points;
+            totalQuestions = currentUser.totalQuestions;
+            isLoggedIn = true;
+
+
+            // If currentUser is not null, it means that someone is logged in
+        }
+
+    }
+
+
+    // private void CheckAns(string userAnswer, string correctAnswer)
+    // {
+
+    //     if (userAnswer == correctAnswer)
+    //     {
+    //         points++; // Increase points if user is right
+    //     }
+    //     else
+    //     {
+    //         points--; // Decrease points if user is wrong
+    //     }
+
+    // }
+
     private List<MechanismQuiz> TableRows = new List<MechanismQuiz>
     {
         new MechanismQuiz { Reactant = "Primary Alcohol", ActualProduct = "Aldehyde", ActualMechanism = "Partial Oxidation", ActualConditions = "Warm Acid, Acidified Potassium Dichromate, Distillation" },
@@ -118,26 +179,32 @@
         new MechanismQuiz { Reactant = "Alcohol", ActualProduct = "Ester", ActualMechanism = "Esterification", ActualConditions = "Acid, heat" },
     };
 
-    public class MechanismQuiz
+    public class MechanismQuiz // For the data in the mechanisms table, and the user's inputs
     {
         public string Reactant { get; set; }
         public string ActualProduct { get; set; }
         public string ActualMechanism { get; set; }
         public string ActualConditions { get; set; }
+
         public string UserProduct { get; set; }
         public string UserMechanism { get; set; }
         public string UserConditions { get; set; }
     }
 
-    private string BorderColourGiver(string userAnswer, string correctAnswer)
+    private string BorderColourGiver(string userAnswer, string correctAnswer) 
     {
        @if (userAnswer == correctAnswer)
         {
-            return "green";
+            return "green"; // Green for correct answer
+            
+
         }
         else
         {
-            return "red";
+            return "red"; // Red for incorrect answer
+         
         }
+
+
     }
 }
