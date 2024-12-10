@@ -13,7 +13,7 @@ table {
     border-collapse: collapse;
     width: 100%;
     font-family: Arial, sans-serif;
-
+    color: antiquewhite
 }
 
     table thead tr {
@@ -24,7 +24,7 @@ table {
     table th, table td {
         border: 1px solid black;
         padding: 8px;
-        color: black
+        color: antiquewhite
     }
 
 input[type="text"] {
