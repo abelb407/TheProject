@@ -101,6 +101,7 @@
 
 <h4>Alcohols: Table Quiz</h4>
 <p>Fill in the table below. If you're right, it'll flash GREEN. Can you get it all correct?</p>
+<p> Each correct row nets 1 point. Anything incorrect and you will lose 1 point. </p>
 
 <table class="quiz-table">
     <thead>
@@ -266,10 +267,19 @@ else
     }
 
 
+    private async Task UpdatePoints() // Method to update the user's point value for the PointSum method
+    {
+        var context = httpContextAccessor.HttpContext;
+        var currentUser = await userManager.GetUserAsync(context.User);
+        if (currentUser != null)
+        {
+            currentUser.Points = points; // Set the user's points value to the one on the page
+            await userManager.UpdateAsync(currentUser); // Update user in the database
+        }
+    }
 
 
-
-    private void PointSum()
+    private async void PointSum()
     {
         foreach (var row in TableRows) // Loop through whole table
         { 
@@ -282,7 +292,7 @@ else
                 points = points - 1;
             }
 
-            StateHasChanged();
+            await UpdatePoints(); // Save changes to the points
         }
 
     }
