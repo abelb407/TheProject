@@ -96,6 +96,9 @@
     Alcohols are key compounds in organic chemistry with distinctive physical and chemical properties. Their reactivity and classification make them important in both academic and industrial contexts.
 </p>
 
+<h2> Your Points </h2>
+<h3> @points </h3> 
+
 <h4>Alcohols: Table Quiz</h4>
 <p>Fill in the table below. If you're right, it'll flash GREEN. Can you get it all correct?</p>
 
@@ -123,9 +126,11 @@
 
 
 <br />
-@if (hideAnswer == true) // Only show this button if the answer table is toggled off
+@if (hideAnswer == true) // Only show these buttons if the answer table is toggled off
 {
-    <a class="btn btn-primary text-white bg-dark" @onclick="SeeAnswer"> View Answers! </a> @*Button to see answers*@
+    <a class="btn btn-primary text-white bg-dark" @onclick="SeeAnswer"> View Answers </a> @*Button to see answers*@
+
+   <a class="btn btn-primary text-white bg-dark" @onclick="PointSum"> Submit Answers  </a> @* Allow users to gain/lose points *@
 }
 
 <br /> 
@@ -258,6 +263,28 @@ else
         public string UserProduct { get; set; }
         public string UserMechanism { get; set; }
         public string UserConditions { get; set; }
+    }
+
+
+
+
+
+    private void PointSum()
+    {
+        foreach (var row in TableRows) // Loop through whole table
+        { 
+            if (row.UserConditions == row.ActualConditions && row.UserProduct == row.ActualProduct && row.UserMechanism == row.ActualMechanism) // Check each column
+            {
+                points = points + 1; // Add or subtract points depending on answers
+            }
+            else
+            {
+                points = points - 1;
+            }
+
+            StateHasChanged();
+        }
+
     }
 
     private string BorderColourGiver(string userAnswer, string correctAnswer) 
