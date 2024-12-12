@@ -142,33 +142,7 @@
         @* Display achievement cards depending on how many points the user has *@
         <h4> Achievements </h4>
 
-   
-            
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        @* @if (points < 25)
+         @if (points < 25)
         {
             <p> Earn 25 points for your first award. </p>
         }
@@ -281,7 +255,7 @@
                     </div>
                 </div>
             }
-        </div> *@
+        </div> 
 
  
     </div>
@@ -347,63 +321,6 @@ else
 
         // Redirect to the UserProvider to carry out the search
         searchResult = await UserProvider.GetUsersAsync(searchText);
-
-    }
-
-
-    public class Achievements // Class for achievements, with the relevant attributes
-    {
-        public int Requirement { get; set; }
-
-        public string? Image { get; set; }
-
-        public string? AchievementName { get; set; }
-
-
-
-    }
-
-    private List<Achievements> Achievemented = new() // All of the achievements the user can have
-{
-    new Achievements { Requirement = 25, Image = "/twentyfivepoints.PNG", AchievementName = "25 points!" },
-    new Achievements { Requirement = 50, Image = "/fiftypoints.PNG", AchievementName = "50 points!" },
-    new Achievements { Requirement = 100, Image = "/hundredpoints.PNG", AchievementName = "100 points!" },
-    new Achievements { Requirement = 200, Image = "/twohundredpoints.PNG", AchievementName = "200 points!" },
-
-
-};
-
-    private void AchievementDisplay(int value, int Requirement)
-    {
-
-        <p> Requirement for achievement: @Requirement </p>
-
-        @if (@value < 25)
-        {
-            <p> Earn 25 points for an achievement. </p>
-        }
-
-
-        else
-        {
-            @foreach (var achievement in Achievemented.Where(a => value => a.Requirement)) 
-            {
-                <div class="col-md-3">
-                    <div class="card bg-dark text-white" style="width: 18rem;">
-                        <img class="card-img-top" src="" alt="200 Points">
-                        <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text">You have earned 200 points.</p>
-                        </div>
-                    </div>
-                </div>
-
-            }
-
-
-    }
-    ;
-
 
     }
 
