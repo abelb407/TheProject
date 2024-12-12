@@ -132,6 +132,10 @@
     <a class="btn btn-primary text-white bg-dark" @onclick="SeeAnswer"> View Answers </a> @*Button to see answers*@
 
    <a class="btn btn-primary text-white bg-dark" @onclick="PointSum"> Submit Answers  </a> @* Allow users to gain/lose points *@
+
+   <br />
+   <br />
+   <p> Points gained (or lost!): @pointsgained </p>
 }
 
 <br /> 
@@ -192,6 +196,7 @@ else
     public int totalQuestions;
     public bool isLoggedIn = false;
     public bool hideAnswer = true;
+    public int pointsgained = 0;
 
 
 
@@ -286,10 +291,12 @@ else
             if (row.UserConditions == row.ActualConditions && row.UserProduct == row.ActualProduct && row.UserMechanism == row.ActualMechanism) // Check each column
             {
                 points = points + 1; // Add or subtract points depending on answers
+                pointsgained = pointsgained + 1;
             }
             else
             {
                 points = points - 1;
+                pointsgained = pointsgained - 1;
             }
 
             await UpdatePoints(); // Save changes to the points
