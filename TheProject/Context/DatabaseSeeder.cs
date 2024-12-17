@@ -106,6 +106,32 @@ new Questions { Question = "What product forms when a carboxylic acid reacts wit
 
 new Questions { Question = "What is formed when a carboxylic acid is reduced?", Topic = "Carboxylic Acids", Option = ["Aldehyde", "Alcohol", "Ketone", "Ether"], Answer = "Aldehyde", Solution = "Carboxylic acids are reduced to aldehydes before they can form alcohols." },
 
+new Questions { Question = "What is the molecular shape of methane?", Topic = "Alkanes", Option = ["Tetrahedral", "Linear", "Trigonal planar", "Bent"], Answer = "Tetrahedral", Solution = "Methane (CH4) has a tetrahedral molecular geometry due to the four bonding pairs of electrons around the central carbon atom." },
+
+new Questions { Question = "What is the type of bonding present in alkenes?", Topic = "Alkenes", Option = ["Ionic bonding", "Covalent bonding", "Metallic bonding", "Hydrogen bonding"], Answer = "Covalent bonding", Solution = "Alkenes contain covalent bonds between carbon atoms, with a double bond that includes one sigma and one pi bond." },
+
+new Questions { Question = "Which type of polymer is formed from alkenes?", Topic = "Alkenes", Option = ["Addition polymer", "Condensation polymer", "Protein polymer", "Carbohydrate polymer"], Answer = "Addition polymer", Solution = "Alkenes undergo addition polymerization, where the double bonds open up to form long-chain polymers." },
+
+new Questions { Question = "What is a characteristic feature of a primary amine?", Topic = "Amines", Option = ["One carbon attached to nitrogen", "Two carbons attached to nitrogen", "Three carbons attached to nitrogen", "No carbon attached to nitrogen"], Answer = "One carbon attached to nitrogen", Solution = "A primary amine has one carbon atom bonded to the nitrogen atom, along with two hydrogen atoms." },
+
+new Questions { Question = "What type of bond is formed between nitrogen and hydrogen in amines?", Topic = "Amines", Option = ["Ionic bond", "Covalent bond", "Hydrogen bond", "Metallic bond"], Answer = "Covalent bond", Solution = "Amines have covalent bonds between nitrogen and hydrogen atoms, where nitrogen shares electrons with hydrogen." },
+
+new Questions { Question = "What is the most common use of amines?", Topic = "Amines", Option = ["Synthesis of dyes", "Formation of polymers", "Agricultural pesticides", "Food preservation"], Answer = "Synthesis of dyes", Solution = "Amines are commonly used in the synthesis of dyes, as they are reactive and can form colored compounds." },
+
+new Questions { Question = "Which functional group is present in aldehydes?", Topic = "Aldehydes", Option = ["Carboxyl", "Amino", "Carbonyl", "Hydroxyl"], Answer = "Carbonyl", Solution = "Aldehydes contain a carbonyl group (C=O) attached to a hydrogen atom." },
+
+new Questions { Question = "What is the effect of aldehydes on Tollens' reagent?", Topic = "Aldehydes", Option = ["It reduces it to silver", "It turns it blue", "It produces a red precipitate", "It reacts with no change"], Answer = "It reduces it to silver", Solution = "Aldehydes reduce Tollens' reagent to silver metal, forming a characteristic silver mirror." },
+
+new Questions { Question = "What is a major use of carboxylic acids?", Topic = "Carboxylic Acids", Option = ["As solvents", "As food additives", "As disinfectants", "As antioxidants"], Answer = "As food additives", Solution = "Carboxylic acids, like acetic acid, are commonly used as food additives, especially as preservatives and flavor enhancers." },
+
+new Questions { Question = "What happens when a carboxylic acid is neutralized?", Topic = "Carboxylic Acids", Option = ["Forms a salt and water", "Forms an alcohol", "Forms a ketone", "Forms an ester"], Answer = "Forms a salt and water", Solution = "When a carboxylic acid reacts with a base, it forms a salt and water in a neutralization reaction." },
+
+new Questions { Question = "Which is a common method of reducing carboxylic acids?", Topic = "Carboxylic Acids", Option = ["Using hydrogen and a catalyst", "Using sodium hydroxide", "Using heat alone", "Using ultraviolet light"], Answer = "Using hydrogen and a catalyst", Solution = "Carboxylic acids can be reduced to alcohols by reacting with hydrogen in the presence of a catalyst like palladium." },
+
+new Questions { Question = "What type of reaction do carboxylic acids undergo with alcohols?", Topic = "Carboxylic Acids", Option = ["Esterification", "Hydrogenation", "Nitration", "Polymerization"], Answer = "Esterification", Solution = "Carboxylic acids react with alcohols in a condensation reaction to form esters, known as esterification." },
+
+new Questions { Question = "What is the effect of carboxylic acids on pH?", Topic = "Carboxylic Acids", Option = ["Increase pH", "Decrease pH", "No effect on pH", "Neutralize pH"], Answer = "Decrease pH", Solution = "Carboxylic acids donate protons (H+ ions) in solution, lowering the pH and making the solution acidic." }
+
         };
         }
 
