@@ -72,21 +72,21 @@ namespace TheProject.Context
 
             new Questions { Question = "What type of bonds are present in alkanes?", Topic = "Alkanes", Option = ["Only sigma bonds", "Only pi bonds", "Sigma and pi bonds", "Hydrogen bonds"], Answer = "Only sigma bonds", Solution = "Alkanes have only single (sigma) bonds between carbon atoms." },
 
-new Questions { Question = "Which reaction type involves breaking C-H bonds in alkanes?", Topic = "Alkanes", Option = ["Combustion", "Hydration", "Halogenation", "Polymerization"], Answer = "Combustion", Solution = "Combustion reactions break C-H bonds in alkanes to form carbon dioxide and water." },
+            new Questions { Question = "Which reaction type involves breaking C-H bonds in alkanes?", Topic = "Alkanes", Option = ["Combustion", "Hydration", "Halogenation", "Polymerization"], Answer = "Combustion", Solution = "Combustion reactions break C-H bonds in alkanes to form carbon dioxide and water." },
 
-new Questions { Question = "Which process is used to separate different alkanes from crude oil?", Topic = "Alkanes", Option = ["Distillation", "Oxidation", "Hydrolysis", "Electrolysis"], Answer = "Distillation", Solution = "Distillation is used to separate alkanes based on their boiling points." },
+            new Questions { Question = "Which process is used to separate different alkanes from crude oil?", Topic = "Alkanes", Option = ["Distillation", "Oxidation", "Hydrolysis", "Electrolysis"], Answer = "Distillation", Solution = "Distillation is used to separate alkanes based on their boiling points." },
 
-new Questions { Question = "What is the general formula for alkenes?", Topic = "Alkenes", Option = ["CnH2n", "CnH2n+2", "CnH2n-2", "CnHn"], Answer = "CnH2n", Solution = "Alkenes follow the general formula CnH2n due to the presence of one double bond." },
+            new Questions { Question = "What is the general formula for alkenes?", Topic = "Alkenes", Option = ["CnH2n", "CnH2n+2", "CnH2n-2", "CnHn"], Answer = "CnH2n", Solution = "Alkenes follow the general formula CnH2n due to the presence of one double bond." },
 
-new Questions { Question = "Which type of isomerism is common in alkenes?", Topic = "Alkenes", Option = ["Geometric", "Optical", "Structural", "Conformational"], Answer = "Geometric", Solution = "Geometric isomerism arises in alkenes due to restricted rotation around the double bond." },
+            new Questions { Question = "Which type of isomerism is common in alkenes?", Topic = "Alkenes", Option = ["Geometric", "Optical", "Structural", "Conformational"], Answer = "Geometric", Solution = "Geometric isomerism arises in alkenes due to restricted rotation around the double bond." },
 
-new Questions { Question = "Which reagent can test for the presence of a double bond in alkenes?", Topic = "Alkenes", Option = ["Bromine water", "Potassium permanganate", "Sodium hydroxide", "Sulfuric acid"], Answer = "Bromine water", Solution = "Bromine water decolorizes in the presence of an alkene due to addition across the double bond." },
+            new Questions { Question = "Which reagent can test for the presence of a double bond in alkenes?", Topic = "Alkenes", Option = ["Bromine water", "Potassium permanganate", "Sodium hydroxide", "Sulfuric acid"], Answer = "Bromine water", Solution = "Bromine water decolorizes in the presence of an alkene due to addition across the double bond." },
 
-new Questions { Question = "What is the characteristic smell of amines?", Topic = "Amines", Option = ["Fishy", "Sweet", "Fruity", "Odorless"], Answer = "Fishy", Solution = "Amines typically have a fishy smell due to the presence of nitrogen." },
+            new Questions { Question = "What is the characteristic smell of amines?", Topic = "Amines", Option = ["Fishy", "Sweet", "Fruity", "Odorless"], Answer = "Fishy", Solution = "Amines typically have a fishy smell due to the presence of nitrogen." },
 
-new Questions { Question = "Which type of amine has three organic groups attached to nitrogen?", Topic = "Amines", Option = ["Primary", "Secondary", "Tertiary", "Quaternary"], Answer = "Tertiary", Solution = "In tertiary amines, nitrogen is bonded to three organic groups." },
+            new Questions { Question = "Which type of amine has three organic groups attached to nitrogen?", Topic = "Amines", Option = ["Primary", "Secondary", "Tertiary", "Quaternary"], Answer = "Tertiary", Solution = "In tertiary amines, nitrogen is bonded to three organic groups." },
 
-new Questions { Question = "What is the basicity trend of amines in water?", Topic = "Amines", Option = ["Primary > Secondary > Tertiary", "Tertiary > Secondary > Primary", "Primary = Secondary = Tertiary", "Primary < Secondary < Tertiary"], Answer = "Primary > Secondary > Tertiary", Solution = "The basicity of amines decreases with increasing alkyl substitution due to steric hindrance." },
+            new Questions { Question = "What is the basicity trend of amines in water?", Topic = "Amines", Option = ["Primary > Secondary > Tertiary", "Tertiary > Secondary > Primary", "Primary = Secondary = Tertiary", "Primary < Secondary < Tertiary"], Answer = "Primary > Secondary > Tertiary", Solution = "The basicity of amines decreases with increasing alkyl substitution due to steric hindrance." },
 
 new Questions { Question = "Which halogenoalkane is used in the preparation of Grignard reagents?", Topic = "Halogenoalkanes", Option = ["Chlorobutane", "Fluoroethane", "Iodoethane", "Methyl bromide"], Answer = "Iodoethane", Solution = "Iodoethane is often used in Grignard reagent synthesis due to its high reactivity." },
 

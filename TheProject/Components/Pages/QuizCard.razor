@@ -52,20 +52,20 @@
                 </div>
 
                 @* Separate card for quiz answers *@
-                <div class="results-card">
-                    <h3>Correct Answers</h3>
+                <div class="results-card" style="background-color: black" >
+                    <h3 style="color: white; background-color: black">Correct Answers</h3>
                     <div class="quiz-answers">
                         @foreach (var Question in FilteredQuestions)
                         {
-                            <div class="sol-card">
+                            <div class="sol-card" style="background-color: black; color: white">
                                 @Question.Question
                             </div>
 
-                            <div> 
-                                @Question.Answer 
+                                <div style="color:white; background-color: black">
+                                    @Question.Answer 
                             </div>
 
-                            <div class="sol-card-text">
+                                <div class="sol-card-text" style="color:white; background-color: black">
                                 @Question.Solution
                             </div>
                         }
